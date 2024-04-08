@@ -17,6 +17,7 @@
   justify-content: space-between;
   align-items: center;
   font-family: Poppins, sans-serif;
+ 
 }
 
 .footer-items {
@@ -27,7 +28,7 @@
 .footer-item {
   font-size: 14px;
   font-weight: 400;
-  transition: color 0.3s; /* Adding transition for smooth effect */
+  transition: color 0.3s; 
   cursor: pointer;
 }
 

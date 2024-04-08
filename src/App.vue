@@ -6,10 +6,11 @@
         <h1>Transforming Ideas Into Structures</h1>
         <div class="content">
           <p>Got a project for us? We’ve got you covered.</p>
-          <button>Get a Quote</button>
+          <button>GET A QUOTE</button>
         </div>
       </div>
     </div>
+    <!--Socials-->
     <Social />
     <!-- About Us -->
     <div class="about-us">
@@ -29,7 +30,7 @@
               ever since the 1500s, when an unknown printer took a galley of
               type and scrambled it to make a type specimen book.
             </div>
-            <button class="about-us-7">Learn More</button>
+            <button class="about-us-7">LEARN MORE</button>
           </div>
         </div>
       </div>
@@ -101,79 +102,141 @@
         </div>
       </div>
     </div>
-    <!-- Projects Section -->
-    <div class="proj-container">
-      <div class="section-header">
-        Recent Projects
-        <p>
-          Explore our recent projects showcasing innovative designs and
-          cutting-edge solutions.
-        </p>
+  </div>
+  <!-- Projects -->
+  <div class="proj-container">
+    <div class="proj-section-header">
+      <h1>Projects</h1>
+      <p>
+        Explore our recent projects showcasing innovative designs and
+        cutting-edge solutions.
+      </p>
+    </div>
+    <div class="project-grid">
+      <!-- Project 1 -->
+      <div class="project">
+        <div class="project-details">
+          <img src="./assets/sample.jpg" class="project-image" />
+          <div class="project-location">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
+              class="company-logo"
+            />
+            Las Piñas City
+          </div>
+          <div class="project-address">Pamplona Tres</div>
+          <div class="project-name">Lorem Ipsum</div>
+        </div>
       </div>
-      <div class="project-grid">
-        <!-- Project 1 -->
-        <div class="project">
-          <div class="project-details">
-            <img src="./assets/sample.jpg" class="project-image" />
-            <div class="project-location">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
-                class="company-logo"
-              />
-              Las Piñas City
-            </div>
-            <div class="project-address">Pamplona Tres</div>
-            <div class="project-name">Lorem Ipsum</div>
+      <!-- Project 2 -->
+      <div class="project">
+        <div class="project-details">
+          <img src="./assets/sample.jpg" class="project-image" />
+          <div class="project-location">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
+              class="company-logo"
+            />
+            Makati City
           </div>
+          <div class="project-address">Samsung Store Glorietta 2</div>
+          <div class="project-name">Lorem Ipsum</div>
         </div>
-        <!-- Project 2 -->
-        <div class="project">
-          <div class="project-details">
-            <img src="./assets/sample.jpg" class="project-image" />
-            <div class="project-location">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
-                class="company-logo"
-              />
-              Makati City
-            </div>
-            <div class="project-address">Samsung Store Glorietta 2</div>
-            <div class="project-name">Lorem Ipsum</div>
+      </div>
+      <!-- Project 3 -->
+      <div class="project">
+        <div class="project-details">
+          <img src="./assets/sample.jpg" class="project-image" />
+          <div class="project-location">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
+              class="company-logo"
+            />
+            Quezon City
           </div>
+          <div class="project-address">Eulogio Rodriguez Jr. Avenue‎</div>
+          <div class="project-name">Lorem Ipsum</div>
         </div>
-        <!-- Project 3 -->
-        <div class="project">
-          <div class="project-details">
-            <img src="./assets/sample.jpg" class="project-image" />
-            <div class="project-location">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
-                class="company-logo"
-              />
-              Quezon City
-            </div>
-            <div class="project-address">Eulogio Rodriguez Jr. Avenue‎</div>
-            <div class="project-name">Lorem Ipsum</div>
+      </div>
+      <!-- Project 4 -->
+      <div class="project">
+        <div class="project-details">
+          <img src="./assets/sample.jpg" class="project-image" />
+          <div class="project-location">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
+              class="company-logo"
+            />
+            Parañaque City
           </div>
+          <div class="project-address">161 Armstrong Avenue</div>
+          <div class="project-name">Lorem Ipsum</div>
         </div>
-        <!-- Project 4 -->
-        <div class="project">
-          <div class="project-details">
-            <img src="./assets/sample.jpg" class="project-image" />
-            <div class="project-location">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
-                class="company-logo"
-              />
-              Parañaque City
-            </div>
-            <div class="project-address">161 Armstrong Avenue</div>
-            <div class="project-name">Lorem Ipsum</div>
+      </div>
+      <!-- Project 5 -->
+      <div class="project">
+        <div class="project-details">
+          <img src="./assets/sample.jpg" class="project-image" />
+          <div class="project-location">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
+              class="company-logo"
+            />
+            Las Piñas City
           </div>
+          <div class="project-address">Pamplona Tres</div>
+          <div class="project-name">Lorem Ipsum</div>
+        </div>
+      </div>
+      <!-- Project 6 -->
+      <div class="project">
+        <div class="project-details">
+          <img src="./assets/sample.jpg" class="project-image" />
+          <div class="project-location">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
+              class="company-logo"
+            />
+            Makati City
+          </div>
+          <div class="project-address">Samsung Store Glorietta 2</div>
+          <div class="project-name">Lorem Ipsum</div>
+        </div>
+      </div>
+      <!-- Project 7 -->
+      <div class="project">
+        <div class="project-details">
+          <img src="./assets/sample.jpg" class="project-image" />
+          <div class="project-location">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
+              class="company-logo"
+            />
+            Quezon City
+          </div>
+          <div class="project-address">Eulogio Rodriguez Jr. Avenue‎</div>
+          <div class="project-name">Lorem Ipsum</div>
+        </div>
+      </div>
+      <!-- Project 8 -->
+      <div class="project">
+        <div class="project-details">
+          <img src="./assets/sample.jpg" class="project-image" />
+          <div class="project-location">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
+              class="company-logo"
+            />
+            Parañaque City
+          </div>
+          <div class="project-address">161 Armstrong Avenue</div>
+          <div class="project-name">Lorem Ipsum</div>
         </div>
       </div>
     </div>
   </div>
+  <!--Product-->
+  <Product />
   <!--Quote Form-->
   <h1>Forms</h1>
   <Footer />
@@ -183,9 +246,14 @@
 import Navbar from "./components/navbar.vue";
 import Footer from "./components/footer.vue";
 import Social from "./components/socials.vue";
+import Product from "./components/product.vue";
 </script>
 
 <style scoped>
+.project-container {
+  margin: 0; /* Adjust margin */
+}
+
 .background-div {
   background-image: url("./assets/ap-bg-2.jpg");
   background-size: cover;
@@ -215,20 +283,20 @@ import Social from "./components/socials.vue";
   color: white;
   font-family: Poppins, sans-serif;
   text-align: center;
-  animation: fadeInUp 1s ease forwards; 
+  animation: fadeInUp 1s ease forwards;
 }
 
 .opening-text .content {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   font-size: 18px;
   color: white;
   font-family: Poppins, sans-serif;
   margin-top: -45px;
-  opacity: 0; 
-  animation: fadeInUp 1s ease forwards; 
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
 }
 
 .opening-text .content p {
@@ -242,7 +310,7 @@ import Social from "./components/socials.vue";
   border-style: solid;
   border-width: 1px;
   color: rgba(205, 171, 100, 1);
-  padding: 3px 20px;
+  padding: 5px 20px;
   font-size: 18px;
   font-family: Poppins, sans-serif;
   cursor: pointer;
@@ -254,34 +322,39 @@ import Social from "./components/socials.vue";
   color: white;
 }
 
-
 /* Projects section */
 
 .proj-container {
   display: flex;
   flex-direction: column;
-  /* align-items: center;*/
-  padding: 45px;
+  align-items: center;
 }
 
-.section-header {
+.proj-section-header {
+  /*padding: 35px;*/
   display: flex;
   flex-direction: column;
-  color: #1E1E1E;
-  font-size: 50px;
+  color: #1e1e1e;
+  font-size: 20px;
   font-family: Poppins, sans-serif;
   font-weight: bold;
+  align-items: center;
 }
 
-.section-header p {
-  color: #1E1E1E;
+.proj-section-header h1 {
+  border-bottom: 8px solid rgba(205, 171, 100, 1);
+}
+
+.proj-section-header p {
+  color: #8f8f8f;
   font-size: 15px;
-  margin-bottom: 50px;
   font-family: Poppins, sans-serif;
   font-weight: normal;
+  margin-bottom: -2%;
 }
 
 .project-grid {
+  padding: 40px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -289,7 +362,7 @@ import Social from "./components/socials.vue";
 
 .project {
   width: calc(25% - 20px);
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .project-image {
@@ -316,7 +389,7 @@ import Social from "./components/socials.vue";
 }
 
 .project-address {
-  color: #1E1E1E;
+  color: #1e1e1e;
   letter-spacing: 0.5px;
   margin-top: 8px;
   font: 700 16px Poppins, sans-serif;
@@ -370,12 +443,13 @@ import Social from "./components/socials.vue";
   flex-direction: column;
   align-self: stretch;
   font-size: 16px;
-  color: #1E1E1E;
+  color: #1e1e1e;
   font-weight: 400;
   margin: auto 0;
 }
 
 .about-us-4 {
+  color: rgba(205, 171, 100, 1);
   font-family: Poppins, sans-serif;
   line-height: 200%;
   letter-spacing: 3px;
@@ -383,7 +457,7 @@ import Social from "./components/socials.vue";
 }
 
 .about-us-5 {
-  color: #1E1E1E;
+  color: #1e1e1e;
   margin-top: 37px;
   font: 700 56px/64px Poppins, sans-serif;
 }
@@ -392,10 +466,11 @@ import Social from "./components/socials.vue";
   font-family: Poppins, sans-serif;
   line-height: 32px;
   margin-top: 35px;
+  color: #8f8f8f;
 }
 
 .about-us-7 {
-  background-color: white;
+  background-color: transparent;
   border-radius: 10px;
   border-color: rgba(205, 171, 100, 1);
   border-style: solid;
@@ -404,7 +479,7 @@ import Social from "./components/socials.vue";
   margin-top: 45px;
   color: #cdab64;
   justify-content: center;
-  padding: 3px 15px;
+  padding: 5px 20px;
   font: 12px/267% Poppins, sans-serif;
   cursor: pointer;
   transition: background-color 0.5s ease;
@@ -420,7 +495,7 @@ import Social from "./components/socials.vue";
   background-color: rgba(240, 240, 240, 0.45);
   align-items: center;
   justify-content: center;
-  padding: 40px;
+  padding: 30px;
 }
 .features-2 {
   gap: 20px;
@@ -449,7 +524,7 @@ import Social from "./components/socials.vue";
   max-width: 100%;
 }
 .features-4 {
-  color: #1E1E1E;
+  color: #1e1e1e;
   align-self: stretch;
   text-align: center;
   margin: 18px -2px 0;
@@ -485,7 +560,7 @@ import Social from "./components/socials.vue";
   max-width: 100%;
 }
 .features-7 {
-  color: #1E1E1E;
+  color: #1e1e1e;
   margin-top: 23px;
   font: 700 18px Poppins, sans-serif;
 }
@@ -512,7 +587,7 @@ import Social from "./components/socials.vue";
 }
 
 .features-10 {
-  color: #1E1E1E;
+  color: #1e1e1e;
   margin-top: 23px;
   font: 700 18px Poppins, sans-serif;
 }
@@ -545,7 +620,7 @@ import Social from "./components/socials.vue";
   max-width: 100%;
 }
 .features-13 {
-  color: #1E1E1E;
+  color: #1e1e1e;
   margin-top: 23px;
   text-align: center;
   font: 700 18px Poppins, sans-serif;
