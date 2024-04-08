@@ -125,11 +125,14 @@
 .image-wrapper {
   position: relative;
   overflow: hidden;
+  transition: transform 0.5s ease, box-shadow 0.3s ease; /* Added box-shadow for hardware acceleration */
+  height: 98%;
 }
 
 .product-image {
   width: 100%;
-  transition: filter 0.5s ease;
+  transition: transform 0.5s ease; /* Adjusted transition */
+  will-change: transform; /* Enforcing hardware acceleration */
 }
 
 .image-overlay {
@@ -137,7 +140,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 98%;
+  height: 100%;
   max-height: 100%;
   background-color: rgba(205, 172, 100, 0.588);
   display: flex;
@@ -152,11 +155,12 @@
   font-size: 18px;
   font-family: Poppins, sans-serif;
   text-align: center;
-  transition: opacity 0.5s ease;
+
 }
 
-.image-wrapper:hover .project-image {
-  filter: brightness(0.7); /* Adjust the brightness */
+.image-wrapper:hover .product-image {
+  transform: scale(1.1); /* Zoom effect on hover */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Added box-shadow for hardware acceleration */
 }
 
 .image-wrapper:hover .image-overlay {
