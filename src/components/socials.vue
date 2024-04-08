@@ -46,6 +46,7 @@
   max-width: 100%;
   gap: 20px;
   justify-content: space-between;
+  cursor: pointer;
 }
 .img {
   aspect-ratio: 1;

@@ -58,7 +58,7 @@
 
 .nav-container.scrolled {
   background-color: #1E1E1E;
-  padding: 10px 30px; 
+  padding: 5px 20px; 
 }
 </style>
 
