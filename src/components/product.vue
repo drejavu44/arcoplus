@@ -4,71 +4,72 @@
     <div class="prod-section-header">
       <h1>Products</h1>
       <p>
-        Explore our wide range of construction solutions designed to meet your needs. 
+        Explore our wide range of construction solutions designed to meet your
+        needs.
       </p>
     </div>
     <div class="photo-container">
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/sample.jpg" class="product-image" />
+          <img src="../assets/products/twin wall poly.jpg" class="product-image" />
           <div class="image-overlay">
-            <p class="overlay-text">Product 1</p>
+            <p class="overlay-text">Twin Wall Polycarbonate Sheet</p>
           </div>
         </div>
       </div>
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/sample.jpg" class="product-image" />
+          <img src="../assets/products/corrugated poly.jpg" class="product-image" />
           <div class="image-overlay">
-            <p class="overlay-text">Product 2</p>
+            <p class="overlay-text">Corrugated Polycarbonate Sheet</p>
           </div>
         </div>
       </div>
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/sample.jpg" class="product-image" />
+          <img src="../assets/products/solid poly.jpg" class="product-image" />
           <div class="image-overlay">
-            <p class="overlay-text">Product 3</p>
+            <p class="overlay-text">Solid Polycarbonate Sheet</p>
           </div>
         </div>
       </div>
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/sample.jpg" class="product-image" />
+          <img src="../assets/products/twin wall poly 2.jpg" class="product-image" />
           <div class="image-overlay">
-            <p class="overlay-text">Product 4</p>
+            <p class="overlay-text">Twin Wall Polycarbonate Sheet</p>
           </div>
         </div>
       </div>
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/sample.jpg" class="product-image" />
+          <img src="../assets/products/pvc laminated ceiling.jpeg" class="product-image" />
           <div class="image-overlay">
-            <p class="overlay-text">Product 5</p>
+            <p class="overlay-text">PVC Laminated Ceiling</p>
           </div>
         </div>
       </div>
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/sample.jpg" class="product-image" />
+          <img src="../assets/products/acrylic sheet.jpg" class="product-image" />
           <div class="image-overlay">
-            <p class="overlay-text">Product 6</p>
+            <p class="overlay-text">Acrylic Sheet</p>
           </div>
         </div>
       </div>
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/sample.jpg" class="product-image" />
+          <img src="../assets/products/aluminum frame.jpg" class="product-image" />
           <div class="image-overlay">
-            <p class="overlay-text">Product 7</p>
+            <p class="overlay-text">Aluminum Frame</p>
           </div>
         </div>
       </div>
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/sample.jpg" class="product-image" />
+          <img src="../assets/products/colored acrylic.jpg" class="product-image" />
           <div class="image-overlay">
-            <p class="overlay-text">Product 8</p>
+            <p class="overlay-text">Colored Acrylic Sheet</p>
           </div>
         </div>
       </div>
@@ -77,9 +78,8 @@
 </template>
 
 <style scoped>
-/* Projects section */
+/* Products section */
 .prod-container {
-  background-color: rgba(240, 240, 240, 0.45);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,7 +90,7 @@
   display: flex;
   flex-direction: column;
   color: #1e1e1e;
-  font-size: 20px;
+  font-size: 13px;
   font-family: Poppins, sans-serif;
   font-weight: bold;
   align-items: center;
@@ -109,15 +109,14 @@
 }
 
 .photo-container {
-  margin-bottom: -4px;
   display: flex;
   flex-wrap: wrap;
 }
 
 .photo-column {
   flex: 10 10 calc(25% - 20px);
-  margin: 0; /* Adjust margin */
-  margin-bottom: -4px;
+  margin: 0; 
+  margin-bottom: -5px;
   position: relative;
   cursor: pointer;
 }
@@ -125,14 +124,15 @@
 .image-wrapper {
   position: relative;
   overflow: hidden;
-  transition: transform 0.5s ease, box-shadow 0.3s ease; /* Added box-shadow for hardware acceleration */
+  transition: transform 0.5s ease, box-shadow 0.3s ease; 
   height: 98%;
 }
 
 .product-image {
   width: 100%;
-  transition: transform 0.5s ease; /* Adjusted transition */
-  will-change: transform; /* Enforcing hardware acceleration */
+  min-height: 100%;
+  transition: transform 0.5s ease; 
+  will-change: transform; 
 }
 
 .image-overlay {
@@ -155,12 +155,11 @@
   font-size: 18px;
   font-family: Poppins, sans-serif;
   text-align: center;
-
 }
 
 .image-wrapper:hover .product-image {
-  transform: scale(1.1); /* Zoom effect on hover */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Added box-shadow for hardware acceleration */
+  transform: scale(1.1); 
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); 
 }
 
 .image-wrapper:hover .image-overlay {

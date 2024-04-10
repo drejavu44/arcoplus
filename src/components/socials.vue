@@ -1,5 +1,5 @@
 <template>
-    <div class="socials">
+  <div class="socials">
     <div class="socials-2">
       <img
         loading="lazy"
@@ -31,11 +31,10 @@
 </template>
 
 <style scoped>
-
 .socials {
   justify-content: center;
   align-items: center;
-  background-color: #1E1E1E;
+  background-color: #1e1e1e;
   display: flex;
   padding: 28px 60px;
 }
