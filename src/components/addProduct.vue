@@ -1,0 +1,74 @@
+<script setup>
+import supabase from '@/supabase/supabase';
+import { ref, onMounted, defineProps } from 'vue';
+
+const props = defineProps({
+    updateProductsArray: {
+        type: Function, 
+        required: true 
+    }
+})
+
+const newProduct = ref({})
+
+const addProduct = async () => {
+    const { data, error } = await supabase.from('products').insert([{ name: newProduct.value.name, imageURL: newProduct.value.imageURL }]).select()
+    if(error){
+        alert("Unable to add product")
+        return
+    }
+    const newlyAddedProduct = data[0]
+    props.updateProductsArray(newlyAddedProduct)
+}
+
+</script>
+<template>
+    <div class="container">
+        <label for="productName">Product Name:</label><br>
+        <input type="text" id="productName" name="productName" v-model="newProduct.name"><br>
+        <label for="imageUrl">Image URL:</label><br>
+        <input type="text" id="imageUrl" name="imageUrl" v-model="newProduct.imageURL"><br><br>
+        <button @click="addProduct">Submit</button>
+    </div>
+</template>
+<style scoped>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
