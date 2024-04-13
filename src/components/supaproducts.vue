@@ -1,13 +1,12 @@
 <script setup>
-import supabase from "@/supabase/supabase";
+import { getProducts } from "../supabase/supabase.js";
 import { ref, onMounted } from "vue";
 import AddProduct from "./addProduct.vue";
 
 const products = ref([]);
 
-const getProducts = async () => {
-  const { data } = await supabase.from("products").select("*");
-  products.value = data;
+const handleGetProducts = async () => {
+  products.value = await getProducts()
 };
 
 const updateProductsArray = (newProduct) => {
@@ -15,8 +14,7 @@ const updateProductsArray = (newProduct) => {
 };
 
 onMounted(() => {
-  // getCountries()
-  getProducts();
+  handleGetProducts();
 });
 </script>
 <template>

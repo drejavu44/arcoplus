@@ -1,19 +1,19 @@
 <script setup>
-import supabase from '@/supabase/supabase';
-import { ref, onMounted, defineProps } from 'vue';
+import { addProduct } from '../supabase/supabase.js';
+import { ref } from 'vue';
 
 const props = defineProps({
     updateProductsArray: {
-        type: Function, 
-        required: true 
+        type: Function,
+        required: true
     }
 })
 
 const newProduct = ref({})
 
-const addProduct = async () => {
-    const { data, error } = await supabase.from('products').insert([{ name: newProduct.value.name, imageURL: newProduct.value.imageURL }]).select()
-    if(error){
+const handleAddProduct = async () => {
+    const response = await addProduct(newProduct)
+    if (response.status === 0) {
         alert("Unable to add product")
         return
     }
@@ -28,7 +28,7 @@ const addProduct = async () => {
         <input type="text" id="productName" name="productName" v-model="newProduct.name"><br>
         <label for="imageUrl">Image URL:</label><br>
         <input type="text" id="imageUrl" name="imageUrl" v-model="newProduct.imageURL"><br><br>
-        <button @click="addProduct">Submit</button>
+        <button @click="handleAddProduct">Submit</button>
     </div>
 </template>
 <style scoped>
