@@ -12,13 +12,22 @@ const props = defineProps({
 const newProduct = ref({})
 
 const handleAddProduct = async () => {
-    const response = await addProduct(newProduct)
+    if(!newProduct.value.imageFile){
+        return
+    }
+    const response = await addProduct(newProduct.value)
     if (response.status === 0) {
         alert("Unable to add product")
         return
     }
-    const newlyAddedProduct = data[0]
+    const newlyAddedProduct = response.data[0]
     props.updateProductsArray(newlyAddedProduct)
+}
+
+const handleFileInputChange = (event)=> {
+    const file = event.target.files[0]
+    newProduct.value.imageFile = file
+    console.log(newProduct.value.imageFile)
 }
 
 </script>
@@ -27,7 +36,7 @@ const handleAddProduct = async () => {
         <label for="productName">Product Name:</label><br>
         <input type="text" id="productName" name="productName" v-model="newProduct.name"><br>
         <label for="imageUrl">Image URL:</label><br>
-        <input type="text" id="imageUrl" name="imageUrl" v-model="newProduct.imageURL"><br><br>
+        <input type="file" id="imageUrl" name="imageUrl" @change="handleFileInputChange"><br><br>
         <button @click="handleAddProduct">Submit</button>
     </div>
 </template>

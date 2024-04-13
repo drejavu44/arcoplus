@@ -23,7 +23,7 @@ onMounted(() => {
   <ul>
     <li v-for="product in products" :key="product.id">
       <p>{{ product.name }}</p>
-      <img :src="product.imageURL" width="100px" height="100px" />
+      <img :src="product.imageUrl" width="100px" height="100px" />
     </li>
   </ul>
 </template>
