@@ -133,6 +133,7 @@
   </div>
 </template>
 
+
 <style scoped>
 /* Projects section */
 
@@ -186,7 +187,6 @@
   width: 100%;
   box-shadow: 0px 6px 16px 0px rgba(0, 0, 0, 0.02);
   border-radius: 16px;
-  
 }
 
 .project-details {

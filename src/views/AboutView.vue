@@ -13,7 +13,7 @@
       <div class="wwa-3">
         <div class="wwa-4">
           <div class="wwa-column">
-            <img src="../assets/ap-au.jpg" class="about-us-image" />
+            <img src="../assets/LOGO LATEST V4.jpg" class="about-us-image" />
           </div>
           <div class="wwa-column-2">
             <div class="wwa-5">
@@ -82,7 +82,7 @@
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/536492aff729039dc4b210f795440a3e4a312af37504541ca09729ebd58df30a?"
             class="img-3"
           />
-          <div class="wcu-10">Experienced Team</div>
+          <div class="wcu-10">Experienced <br /> Team</div>
           <div class="wcu-11">
             Our team comprises skilled architects, engineers, project managers,
             and laborers, bringing years of collective experience to every
@@ -317,7 +317,7 @@ import Footer from "../components/footer.vue";
 .wcu-5 {
   color: #949494;
   text-align: center;
-  margin-top: 31px;
+  margin-top: 23px;
   font: 400 12px/19px Poppins, sans-serif;
 }
 .wcu-column-2 {
@@ -355,7 +355,7 @@ import Footer from "../components/footer.vue";
 .wcu-8 {
   color: #949494;
   text-align: center;
-  margin-top: 31px;
+  margin-top: 23px;
   font: 400 12px/19px Poppins, sans-serif;
 }
 .wcu-column-3 {
@@ -405,7 +405,7 @@ import Footer from "../components/footer.vue";
 .wcu-11 {
   color: #949494;
   text-align: center;
-  margin-top: 31px;
+  margin-top: 20px;
   font: 400 12px/19px Poppins, sans-serif;
 }
 /*Work With Us*/

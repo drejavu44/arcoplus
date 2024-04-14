@@ -30,22 +30,22 @@
               type and scrambled it to make a type specimen book.
             </div>
             <a class="about-us-7"
-              ><RouterLink to="/about">LEARN MORE</RouterLink></a
-            >
+              ><RouterLink to="/about">LEARN MORE</RouterLink>
+            </a>
           </div>
         </div>
       </div>
     </div>
-    <!--Features <Features />-->
+  </div>
     <!--Project-->
     <Project />
     <!--Product-->
     <Product />
     <!--Quote Form-->
-    <!--CRUD-->
-    <Supaproducts />
-    <Footer />
-  </div>
+    <QuoteForm />
+  <!--CRUD-->
+  <Supaproducts />
+  <Footer />
 </template>
 
 <script setup>
@@ -55,7 +55,7 @@ import Footer from "../components/footer.vue";
 import Social from "../components/socials.vue";
 import Product from "../components/product.vue";
 import Project from "../components/project.vue";
-import Features from "../components/features.vue";
+import QuoteForm from "../components/quoteform.vue";
 import { RouterLink } from "vue-router";
 </script>
 
@@ -223,4 +223,6 @@ import { RouterLink } from "vue-router";
   background-color: rgba(205, 171, 100, 1);
   color: white;
 }
+
+
 </style>
