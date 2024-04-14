@@ -11,24 +11,32 @@ const uploadProductImage = async (imageFile) => {
   const file = imageFile;
   const uuid = uuidv4();
   const fileName = `${uuid}_${file.name}`;
-  let imageURL = "";
+  let imageUrl = "";
 
   const { data, error } = await supabase.storage
     .from("products")
     .upload(fileName, file);
 
   if (!error) {
-    imageURL = `https://mcjjkqjdijgxngdbsomz.supabase.co/storage/v1/object/public/${data.fullPath}`;
+    imageUrl = `https://mcjjkqjdijgxngdbsomz.supabase.co/storage/v1/object/public/${data.fullPath}`;
   }
 
-  return imageURL;
+  const path = data.path
+
+  return {imageUrl, path};
 };
+
+const deleteProductImage = async(filePath) => {
+  const {error} = await supabase.storage.from('products').remove(filePath)
+
+  return error ? false : true
+}
 
 const addProduct = async (newProduct) => {
   const { name, imageFile } = newProduct;
   let result = {};
 
-  const imageUrl = await uploadProductImage(imageFile);
+  const {imageUrl, path} = await uploadProductImage(imageFile);
 
   if (!imageUrl) {
     result = { status: 0, errorMessage: "Unable to upload image file." };
@@ -37,7 +45,7 @@ const addProduct = async (newProduct) => {
 
   const { data, error } = await supabase
     .from("products")
-    .insert({ name, imageUrl })
+    .insert({ name, imageUrl, imagePath: path})
     .select();
 
   error
@@ -54,4 +62,15 @@ const getProducts = async () => {
   return data;
 };
 
-export { getProducts, addProduct, uploadProductImage };
+const deleteProduct = async (product) => {
+  const imageStorageDeletion = await deleteProductImage(product.imagePath)
+  if(!imageStorageDeletion){
+    return false
+  }
+
+  const {error} = await supabase.from('products').delete().eq('id', product.id)
+
+  return !error ? true : false
+}
+
+export { getProducts, addProduct, uploadProductImage, deleteProduct };

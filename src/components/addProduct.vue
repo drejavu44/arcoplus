@@ -17,7 +17,7 @@ const handleAddProduct = async () => {
     }
     const response = await addProduct(newProduct.value)
     if (response.status === 0) {
-        alert("Unable to add product")
+        alert(response.errorMessage)
         return
     }
     const newlyAddedProduct = response.data[0]
