@@ -11,7 +11,10 @@
     <div class="photo-container">
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/products/twin wall poly.jpg" class="product-image" />
+          <img
+            src="../assets/products/twin wall poly.jpg"
+            class="product-image"
+          />
           <div class="image-overlay">
             <p class="overlay-text">Twin Wall Polycarbonate Sheet</p>
           </div>
@@ -19,7 +22,10 @@
       </div>
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/products/corrugated poly.jpg" class="product-image" />
+          <img
+            src="../assets/products/corrugated poly.jpg"
+            class="product-image"
+          />
           <div class="image-overlay">
             <p class="overlay-text">Corrugated Polycarbonate Sheet</p>
           </div>
@@ -35,7 +41,10 @@
       </div>
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/products/twin wall poly 2.jpg" class="product-image" />
+          <img
+            src="../assets/products/twin wall poly 2.jpg"
+            class="product-image"
+          />
           <div class="image-overlay">
             <p class="overlay-text">Twin Wall Polycarbonate Sheet</p>
           </div>
@@ -43,7 +52,10 @@
       </div>
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/products/pvc laminated ceiling.jpeg" class="product-image" />
+          <img
+            src="../assets/products/pvc laminated ceiling.jpeg"
+            class="product-image"
+          />
           <div class="image-overlay">
             <p class="overlay-text">PVC Laminated Ceiling</p>
           </div>
@@ -51,7 +63,10 @@
       </div>
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/products/acrylic sheet.jpg" class="product-image" />
+          <img
+            src="../assets/products/acrylic sheet.jpg"
+            class="product-image"
+          />
           <div class="image-overlay">
             <p class="overlay-text">Acrylic Sheet</p>
           </div>
@@ -59,7 +74,10 @@
       </div>
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/products/aluminum frame.jpg" class="product-image" />
+          <img
+            src="../assets/products/aluminum frame.jpg"
+            class="product-image"
+          />
           <div class="image-overlay">
             <p class="overlay-text">Aluminum Frame</p>
           </div>
@@ -67,7 +85,10 @@
       </div>
       <div class="photo-column">
         <div class="image-wrapper">
-          <img src="../assets/products/colored acrylic.jpg" class="product-image" />
+          <img
+            src="../assets/products/colored acrylic.jpg"
+            class="product-image"
+          />
           <div class="image-overlay">
             <p class="overlay-text">Colored Acrylic Sheet</p>
           </div>
@@ -115,7 +136,7 @@
 
 .photo-column {
   flex: 10 10 calc(25% - 20px);
-  margin: 0; 
+  margin: 0;
   margin-bottom: -5px;
   position: relative;
   cursor: pointer;
@@ -124,15 +145,15 @@
 .image-wrapper {
   position: relative;
   overflow: hidden;
-  transition: transform 0.5s ease, box-shadow 0.3s ease; 
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
   height: 98%;
 }
 
 .product-image {
   width: 100%;
   min-height: 100%;
-  transition: transform 0.5s ease; 
-  will-change: transform; 
+  transition: transform 0.5s ease;
+  will-change: transform;
 }
 
 .image-overlay {
@@ -158,8 +179,8 @@
 }
 
 .image-wrapper:hover .product-image {
-  transform: scale(1.1); 
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); 
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .image-wrapper:hover .image-overlay {
