@@ -1,64 +1,65 @@
-<template>
-  <div>
-    <button class="edit-product-button" @click="openModal">
-      <i class="fa-solid fa-pen-to-square"></i>
-      Edit
-    </button>
-    <button class="delete-product-button" @click="confirmDelete">
-      <i class="fa-solid fa-trash"></i>
-      Delete
-    </button>
-    <div v-if="isModalOpen" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1>Edit Product</h1>
-          <span class="close" @click="closeModal">&times;</span>
-        </div>
-        <div class="modal-input">
-          <label>Product Name:</label><br />
-          <input type="text" /><br />
-        </div>
-        <div class="modal-input">
-          <label>Upload Picture:</label><br />
-          <input type="file" /><br />
-        </div>
-        <div class="modal-buttons">
-          <button class="cancel-button" @click="closeModal">Cancel</button>
-          <button class="submit-button" @click="submitForm">Submit</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref } from "vue";
+import { updateProduct } from "@/supabase/supabase";
 import Swal from "sweetalert2";
 
-/* Script for Modal */
-const isModalOpen = ref(false);
+const props = defineProps({
+  hideEditProduct: {
+    type: Function,
+    required: true
+  },
+  selectedProduct: {
+    type: Object,
+    required: true
+  },
+  updateProductValue: {
+    type: Function,
+    required: true
+  }
+})
 
-const openModal = () => {
-  isModalOpen.value = true;
-};
+const updatedProduct = ref({ ...props.selectedProduct })
 
 const closeModal = () => {
-  isModalOpen.value = false;
+  props.hideEditProduct()
 };
 
-const submitForm = () => {
+const handleFileInputChange = (event) => {
+  const file = event.target.files[0]
+  updatedProduct.value.newImage = file
+}
+
+const submitForm = async () => {
   // Here, you can put your form submission logic
 
-  Swal.fire({
-    title: "Submitted!",
-    text: "Your product has been updated successfully.",
-    icon: "success",
-    timer: 1500, 
-    showConfirmButton: false, 
-    confirmButtonColor: "rgba(205, 171, 100, 1)",
-  }).then(() => {
-    closeModal();
-  });
+  const result = await updateProduct(updatedProduct.value)
+
+  console.log(result)
+
+  if (result.status === 1) {
+    Swal.fire({
+      title: "Submitted!",
+      text: "Your product has been updated successfully.",
+      icon: "success",
+      timer: 1500,
+      showConfirmButton: false,
+      confirmButtonColor: "rgba(205, 171, 100, 1)",
+    }).then(() => {
+      closeModal();
+    });
+    props.updateProductValue(result.data)
+  } else {
+    Swal.fire({
+      title: "Update Failed.",
+      text: "Unable to update product.",
+      icon: "error",
+      timer: 1500,
+      showConfirmButton: false,
+      confirmButtonColor: "rgba(205, 171, 100, 1)",
+    }).then(() => {
+      closeModal();
+    });
+  }
 };
 
 const confirmDelete = () => {
@@ -85,13 +86,38 @@ const deleteProduct = () => {
     title: "Deleted!",
     text: "Your project has been deleted.",
     icon: "success",
-    timer: 1500, 
-    showConfirmButton: false, 
+    timer: 1500,
+    showConfirmButton: false,
     confirmButtonColor: "rgba(205, 171, 100, 1)",
   });
 };
 </script>
-
+<template>
+  <div>
+    <div class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Edit Product</h1>
+          <span class="close" @click="closeModal">&times;</span>
+        </div>
+        <img width="100px" height="100px" :src="props.selectedProduct.imageUrl" />
+        <!-- <p>There's an existing image associated with this product. Upload to update the image below.</p> -->
+        <div class="modal-input">
+          <label>Product Name:</label><br />
+          <input type="text" v-model="updatedProduct.name" @change="console.log(updatedProduct.name)"/><br />
+        </div>
+        <div class="modal-input">
+          <label>Upload Picture:</label><br />
+          <input type="file" @change="handleFileInputChange" /><br />
+        </div>
+        <div class="modal-buttons">
+          <button class="cancel-button" @click="closeModal">Cancel</button>
+          <button class="submit-button" @click="submitForm">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 <style scoped>
 /* Edit Product Modal */
 .modal {

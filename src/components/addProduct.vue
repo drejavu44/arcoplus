@@ -1,6 +1,7 @@
 <script setup>
 import { addProduct } from '../supabase/supabase.js';
 import { ref } from 'vue';
+import Swal from 'sweetalert2';
 
 const props = defineProps({
     updateProductsArray: {
@@ -12,7 +13,7 @@ const props = defineProps({
 const newProduct = ref({})
 
 const handleAddProduct = async () => {
-    if(!newProduct.value.imageFile){
+    if (!newProduct.value.imageFile) {
         return
     }
     const response = await addProduct(newProduct.value)
@@ -22,9 +23,19 @@ const handleAddProduct = async () => {
     }
     const newlyAddedProduct = response.data[0]
     props.updateProductsArray(newlyAddedProduct)
+    Swal.fire({
+        title: "Success!",
+        text: `${newProduct.value.name} has been added successfully.`,
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
+        confirmButtonColor: "rgba(205, 171, 100, 1)",
+    })
+    newProduct.value = {}
+    document.getElementById('imageUrl').value = ""
 }
 
-const handleFileInputChange = (event)=> {
+const handleFileInputChange = (event) => {
     const file = event.target.files[0]
     newProduct.value.imageFile = file
     console.log(newProduct.value.imageFile)
