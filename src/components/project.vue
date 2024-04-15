@@ -145,7 +145,7 @@
 }
 
 .proj-section-header {
-  /*padding: 35px;*/
+  padding: 35px;
   display: flex;
   flex-direction: column;
   color: #1e1e1e;

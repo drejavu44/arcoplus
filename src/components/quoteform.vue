@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="quote-form-column">
-            <img src="../assets/ap-au.jpg" class="quote-form-image" />
+            <img src="../assets/ap-11.jpg" class="quote-form-image" />
           </div>
         </div>
       </div>
@@ -45,30 +45,30 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import Swal from 'sweetalert2';
+import { ref } from "vue";
+import Swal from "sweetalert2";
 
 const formData = ref({
-  name: '',
-  email: '',
-  phone: '',
-  message: ''
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
 });
 
 const handleButtonClick = () => {
   // Handle form submission logic here
 
   Swal.fire({
-    icon: 'success',
-    title: 'Inquiry received!',
+    icon: "success",
+    title: "Inquiry received!",
     showConfirmButton: false,
-    timer: 1500 // Close the alert after 1.5 seconds
+    timer: 1500,
   });
 };
 </script>
 
 <style scoped>
-/* Who we are section */
+/* quote form section */
 .quote-form-container {
   background-color: rgba(240, 240, 240, 0.45);
 }
@@ -128,7 +128,7 @@ const handleButtonClick = () => {
   font-size: 12px;
   font-weight: normal;
   padding: 25px;
-  text-align: center; /* Center the text */
+  text-align: center;
 }
 
 .quote-form-7 {
@@ -138,17 +138,22 @@ const handleButtonClick = () => {
   font-weight: bold;
   padding: 25px;
   margin-top: -75px;
-  text-align: center; /* Center the text */
+  text-align: center;
 }
 
 .quote-form-7 h1 {
-  margin-bottom: 40px; /* Adjust the value as needed */
+  margin-bottom: 40px;
   border-bottom: 1px solid #e0e0e0;
   padding: 10px;
 }
 
 .form-group {
   margin-bottom: 20px;
+}
+
+.form-group :focus {
+  border-color: rgba(205, 171, 100, 1);
+  outline: none;
 }
 
 form {
@@ -158,7 +163,7 @@ form {
 .form-group label {
   display: block;
   margin-bottom: 5px;
-  text-align: left; /* Align the label text to the left */
+  text-align: left;
   color: #1e1e1e;
   font-weight: bold;
   font-size: 12px;
@@ -171,21 +176,27 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+  font-size: 14px;
 }
 
 button[type="submit"] {
-  font-family: Poppins, sans-serif;
-  background-color: rgba(205, 171, 100, 1);
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
+  background-color: transparent;
+  border-radius: 10px;
+  border-color: rgba(205, 171, 100, 1);
+  border-style: solid;
+  border-width: 1px;
+  color: rgba(205, 171, 100, 1);
   width: 100%;
+  font-family: Poppins, sans-serif;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  margin-top: 20px;
+  padding: 10px 20px;
 }
 
 button[type="submit"]:hover {
-  background-color: rgb(145, 121, 69);
+  background-color: rgba(205, 171, 100, 1);
+  color: white;
 }
 </style>
