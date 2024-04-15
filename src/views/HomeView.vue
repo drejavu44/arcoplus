@@ -44,12 +44,10 @@
     <!--Quote Form-->
     <QuoteForm />
   <!--CRUD-->
-  <Supaproducts />
   <Footer />
 </template>
 
 <script setup>
-import Supaproducts from "../components/supaproducts.vue";
 import Navbar from "../components/navbar.vue";
 import Footer from "../components/footer.vue";
 import Social from "../components/socials.vue";
