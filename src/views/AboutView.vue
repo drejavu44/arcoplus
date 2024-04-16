@@ -30,7 +30,7 @@
             </div>
           </div>
           <div class="wwa-column-2">
-            <img src="../assets/LOGO LATEST V4.jpg" class="about-us-image" />
+            <img src="../assets/LOGO LATEST V4.jpg" class="wwa-image" />
           </div>
         </div>
       </div>
@@ -308,12 +308,14 @@ const handleButtonClick = () => {
   line-height: normal;
   width: 50%;
 }
-.img {
+.wwa-image {
   aspect-ratio: 0.88;
   object-fit: auto;
   object-position: center;
-  width: 100%;
+  max-width: 100%;
   flex-grow: 1;
+  background-size: cover;
+  background-position: center;
 }
 
 .wwa-column {
