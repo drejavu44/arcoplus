@@ -395,7 +395,7 @@ const handleButtonClick = () => {
   display: flex;
   flex-direction: column;
   line-height: normal;
-  width: 33%;
+  width: 50%;
   margin-left: 0px;
 }
 
@@ -430,11 +430,12 @@ const handleButtonClick = () => {
   margin-top: 23px;
   font: 400 12px/19px Poppins, sans-serif;
 }
+
 .wcu-column-2 {
   display: flex;
   flex-direction: column;
   line-height: normal;
-  width: 33%;
+  width: 50%;
   margin-left: 0px;
 }
 
@@ -472,7 +473,7 @@ const handleButtonClick = () => {
   display: flex;
   flex-direction: column;
   line-height: normal;
-  width: 33%;
+  width: 50%;
   margin-left: 0px;
 }
 
@@ -518,6 +519,13 @@ const handleButtonClick = () => {
   margin-top: 20px;
   font: 400 12px/19px Poppins, sans-serif;
 }
+
+@media only screen and (max-width: 768px) {
+  .wcu-5, .wcu-8, .wcu-11 {
+    overflow: auto; /* Show the overflow on smaller screens */
+  }
+}
+
 /*Work With Us*/
 .wwu-container {
   background-color: rgba(240, 240, 240, 0.45);
@@ -559,6 +567,7 @@ const handleButtonClick = () => {
   background-color: white;
   width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: auto;
 }
 
 .wwu-4 {
