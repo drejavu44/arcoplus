@@ -182,7 +182,7 @@ textarea {
 
 button[type="submit"] {
   background-color: transparent;
-  border-radius: 10px;
+  border-radius: 30px;
   border-color: rgba(205, 171, 100, 1);
   border-style: solid;
   border-width: 1px;

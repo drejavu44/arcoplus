@@ -25,6 +25,17 @@
                 popularised in the 1960s with the release of Letraset sheets
                 containing Lorem Ipsum passages, and more recently with desktop
                 publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum. <br /> <br />
+
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
                 Lorem Ipsum.
               </div>
             </div>
@@ -235,7 +246,7 @@ const handleButtonClick = () => {
   justify-content: center;
   align-items: center;
   height: 800px;
-  font-size: 50px;
+  font-size: 45px;
   color: white;
   font-family: Poppins, sans-serif;
   text-align: center;
@@ -285,10 +296,10 @@ const handleButtonClick = () => {
 
 .wwa {
   display: flex;
-  max-width: 60%;
+  max-width: 80%;
   flex-direction: column;
   margin: 0 auto;
-  padding: 80px;
+  padding: 60px;
 }
 
 .wwa-3 {
@@ -334,13 +345,13 @@ const handleButtonClick = () => {
 }
 
 .wwa-6 {
-  color: #000;
-  font: 700 40px Poppins, sans-serif;
+  color: #1e1e1e;
+  font: 700 50px Poppins, sans-serif;
   padding: 30px;
 }
 .wwa-7 {
   color: #8f8f8f;
-  font: 400 12px Poppins, sans-serif;
+  font: 400 13px Poppins, sans-serif;
   padding: 30px;
   margin-top: -30px;
 }
@@ -366,12 +377,12 @@ const handleButtonClick = () => {
   font-size: 15px;
   font-family: Poppins, sans-serif;
   font-weight: normal;
-  margin-bottom: -2%;
 }
 .wcu {
   max-width: 790px;
   margin: 0 auto;
-  padding: 100px 0;
+  margin-bottom: 50px;
+  padding: 5px;
 }
 .wcu-2 {
   gap: 40px;
@@ -638,7 +649,7 @@ input {
 
 button[type="submit"] {
   background-color: transparent;
-  border-radius: 10px;
+  border-radius: 30px;
   border-color: rgba(205, 171, 100, 1);
   border-style: solid;
   border-width: 1px;
