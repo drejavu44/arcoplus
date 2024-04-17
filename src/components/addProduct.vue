@@ -63,7 +63,7 @@ const handleFileInputChange = (event) => {
       </div>
 
       <div class="input-group">
-        <label for="imageUrl">Image URL:</label><br />
+        <label for="imageUrl">Upload Picture:</label><br />
         <input
           type="file"
           id="imageUrl"
@@ -82,7 +82,7 @@ const handleFileInputChange = (event) => {
 
 <style scoped>
 .mp-background {
-  background-image: url("../assets/pd-bg2.jpg");
+  background-image: url("../assets/ap-add-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -95,9 +95,10 @@ const handleFileInputChange = (event) => {
 .container {
   margin-top: 50px;
   width: 90%;
-  background-color: rgba(38, 38, 38, 0.568);
+  background-color: #1a1a1a35;
   padding: 30px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
 }
 .mp-header {
   margin-bottom: 20px;
