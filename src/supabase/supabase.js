@@ -7,6 +7,27 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jamprcWpkaWpneG5nZGJzb216Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI3MTc1NjksImV4cCI6MjAyODI5MzU2OX0.IaUrbyejMvkbX_t2tpyQNssWpLM_Y4AkSDIc8aQQZgc"
 );
 
+const createUserAccount = async (email, password) => {
+  const { data, error } = await supabase.auth.signUp({ email, password });
+
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(data);
+  }
+
+  return error ? error : data;
+};
+
+const loginUser = async (email, password) => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  return error ? {status: 0, errorMessage: error} : {status: 1, data}
+};
+
 const uploadProductImage = async (imageFile) => {
   const file = imageFile;
   const uuid = uuidv4();
@@ -30,7 +51,7 @@ const uploadProductImage = async (imageFile) => {
 
 const deleteProductImage = async (filePath) => {
   const { error } = await supabase.storage.from("products").remove(filePath);
-  console.log(error)
+  console.log(error);
 
   return error ? false : true;
 };
@@ -81,8 +102,10 @@ const deleteProduct = async (product) => {
 
 const updateProduct = async (updatedProduct) => {
   if (updatedProduct.newImage) {
-    console.log("tries to delete the associated image with this product.")
-    const currentImageDeletion = await deleteProductImage(updatedProduct.imagePath);
+    console.log("tries to delete the associated image with this product.");
+    const currentImageDeletion = await deleteProductImage(
+      updatedProduct.imagePath
+    );
 
     if (!currentImageDeletion) {
       return {
@@ -92,7 +115,9 @@ const updateProduct = async (updatedProduct) => {
       };
     }
 
-    const uploadUpdatedImage = await uploadProductImage(updatedProduct.newImage);
+    const uploadUpdatedImage = await uploadProductImage(
+      updatedProduct.newImage
+    );
 
     updatedProduct.imageUrl = uploadUpdatedImage.imageUrl;
     updatedProduct.imagePath = uploadUpdatedImage.imagePath;
@@ -100,11 +125,16 @@ const updateProduct = async (updatedProduct) => {
 
   const { data, error } = await supabase
     .from("products")
-    .update({name: updatedProduct.name, imagePath: updatedProduct.imagePath, imageUrl: updatedProduct.imageUrl})
-    .eq("id", updatedProduct.id).select();
+    .update({
+      name: updatedProduct.name,
+      imagePath: updatedProduct.imagePath,
+      imageUrl: updatedProduct.imageUrl,
+    })
+    .eq("id", updatedProduct.id)
+    .select();
 
-  console.log(error)
-  console.log(data)
+  console.log(error);
+  console.log(data);
 
   return !error
     ? { status: 1, data: updatedProduct }
@@ -114,4 +144,12 @@ const updateProduct = async (updatedProduct) => {
       };
 };
 
-export { getProducts, addProduct, uploadProductImage, deleteProduct, updateProduct };
+export {
+  createUserAccount,
+  loginUser,
+  getProducts,
+  addProduct,
+  uploadProductImage,
+  deleteProduct,
+  updateProduct,
+};
