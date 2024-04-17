@@ -87,7 +87,7 @@ import { RouterLink } from "vue-router";
   justify-content: center;
   align-items: center;
   height: 800px;
-  font-size: 50px;
+  font-size: 45px;
   color: white;
   font-family: Poppins, sans-serif;
   text-align: center;
@@ -113,7 +113,7 @@ import { RouterLink } from "vue-router";
 
 .opening-text button {
   background-color: transparent;
-  border-radius: 10px;
+  border-radius: 30px;
   border-color: rgba(205, 171, 100, 1);
   border-style: solid;
   border-width: 1px;
@@ -203,7 +203,7 @@ import { RouterLink } from "vue-router";
 
 .about-us-7 a {
   background-color: transparent;
-  border-radius: 10px;
+  border-radius: 30px;
   border-color: rgba(205, 171, 100, 1);
   border-style: solid;
   border-width: 1px;
