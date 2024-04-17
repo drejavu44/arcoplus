@@ -4,6 +4,7 @@ import AboutView from "../views/AboutView.vue"
 import Supaproducts from "@/components/supaproducts.vue"
 import LoginView from "../views/auth/LoginView.vue"
 import SignupView from "../views/auth/SignupView.vue"
+import ProjectsView from "../views/projects/ProjectsView.vue"
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
             path:"/signup",
             name:"signup",
             component: SignupView
+        },
+        {
+            path:"/projects",
+            name:"projects",
+            component: ProjectsView
         }
     ]
 })

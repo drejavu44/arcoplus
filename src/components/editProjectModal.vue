@@ -1,68 +1,73 @@
-<template>
-  <div>
-    <button class="edit-product-button" @click="openModal">
-      <i class="fa-solid fa-pen-to-square"></i>
-      Edit
-    </button>
-    <button class="delete-product-button" @click="confirmDelete">
-      <i class="fa-solid fa-trash"></i>
-      Delete
-    </button>
-    <div v-if="isModalOpen" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1>Edit Project</h1>
-          <span class="close" @click="closeModal">&times;</span>
-        </div>
-        <div class="modal-input">
-          <label>Project Name:</label><br />
-          <input type="text" /><br />
-        </div>
-        <div class="modal-input">
-          <label>Description:</label><br />
-          <textarea class="description-textarea"></textarea><br />
-        </div>
-        <div class="modal-input">
-          <label>Upload Picture:</label><br />
-          <input type="file" /><br />
-        </div>
-        <div class="modal-buttons">
-          <button class="cancel-button" @click="closeModal">Cancel</button>
-          <button class="submit-button" @click="submitForm">Submit</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref } from "vue";
 import Swal from "sweetalert2";
+import { updateProject } from "@/supabase/supabase";
 
-/* Script for Modal */
-const isModalOpen = ref(false);
+const props = defineProps({
+  hideEditProject: {
+    type: Function,
+    required:true
+  },
+  selectedProject: {
+    type:Object,
+    required:true
+  },
+  updateProjectValue: {
+    type: Function,
+    required: true
+  }
+})
 
-const openModal = () => {
-  isModalOpen.value = true;
-};
+const updatedProject = ref({...props.selectedProject})
 
 const closeModal = () => {
-  isModalOpen.value = false;
+  props.hideEditProject()
 };
 
-const submitForm = () => {
-  // Here, you can put your form submission logic
+const handleFileInputChange = (event) => {
+  const file = event.target.files[0]
+  updatedProject.value.newImage = file
+}
 
-  Swal.fire({
-    title: "Submitted!",
-    text: "Your project has been updated successfully.",
-    icon: "success",
-    timer: 1500, 
-    showConfirmButton: false, 
-    confirmButtonColor: "rgba(205, 171, 100, 1)",
-  }).then(() => {
-    closeModal();
-  });
+const submitForm = async() => {
+  const result = await updateProject(updatedProject.value)
+
+  if(result.status === 1){
+    Swal.fire({
+      title: "Submitted!",
+      text: "Your project has been updated successfully.",
+      icon: "success",
+      timer: 1500,
+      showConfirmButton: false,
+      confirmButtonColor: "rgba(205, 171, 100, 1)",
+    }).then(() => {
+      closeModal();
+    });
+
+    props.updateProjectValue(result.data)
+  }else{
+    Swal.fire({
+      title: "Update Failed.",
+      text: "Unable to update project.",
+      icon: "error",
+      timer: 1500,
+      showConfirmButton: false,
+      confirmButtonColor: "rgba(205, 171, 100, 1)",
+    }).then(() => {
+      closeModal();
+    });
+  }
+
+  // Swal.fire({
+  //   title: "Submitted!",
+  //   text: "Your project has been updated successfully.",
+  //   icon: "success",
+  //   timer: 1500, 
+  //   showConfirmButton: false, 
+  //   confirmButtonColor: "rgba(205, 171, 100, 1)",
+  // }).then(() => {
+  //   closeModal();
+  // });
 };
 
 
@@ -97,6 +102,40 @@ const deleteProduct = () => {
   });
 };
 </script>
+
+<template>
+  <div>
+    <div class="modal">
+      <div class="modal-content">
+        <img width="100px" height="100px" :src="updatedProject.imageUrl">
+        <div class="modal-header">
+          <h1>Edit Project</h1>
+          <span class="close" @click="closeModal">&times;</span>
+        </div>
+        <div class="modal-input">
+          <label>Project Title:</label><br />
+          <input type="text" v-model="updatedProject.title"/><br />
+        </div>
+        <div class="modal-input">
+          <label>Description:</label><br />
+          <textarea class="description-textarea" v-model="updatedProject.description"></textarea><br />
+        </div>
+        <div class="modal-input">
+          <label>Location:</label><br />
+          <textarea class="description-textarea" v-model="updatedProject.location"></textarea><br />
+        </div>
+        <div class="modal-input">
+          <label>Upload Picture:</label><br />
+          <input type="file" @change="handleFileInputChange"/><br />
+        </div>
+        <div class="modal-buttons">
+          <button class="cancel-button" @click="closeModal">Cancel</button>
+          <button class="submit-button" @click="submitForm">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 /* Edit Project Modal */

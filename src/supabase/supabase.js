@@ -25,10 +25,10 @@ const loginUser = async (email, password) => {
     password,
   });
 
-  return error ? {status: 0, errorMessage: error} : {status: 1, data}
+  return error ? { status: 0, errorMessage: error } : { status: 1, data };
 };
 
-const uploadProductImage = async (imageFile) => {
+const uploadImage = async (imageFile) => {
   const file = imageFile;
   const uuid = uuidv4();
   const fileName = `${uuid}_${file.name}`;
@@ -42,14 +42,12 @@ const uploadProductImage = async (imageFile) => {
     imageUrl = `https://mcjjkqjdijgxngdbsomz.supabase.co/storage/v1/object/public/${data.fullPath}`;
   }
 
-  console.log(data);
-
   const path = data.path;
 
   return { imageUrl, path };
 };
 
-const deleteProductImage = async (filePath) => {
+const deleteImage = async (filePath) => {
   const { error } = await supabase.storage.from("products").remove(filePath);
   console.log(error);
 
@@ -60,7 +58,7 @@ const addProduct = async (newProduct) => {
   const { name, imageFile } = newProduct;
   let result = {};
 
-  const { imageUrl, path } = await uploadProductImage(imageFile);
+  const { imageUrl, path } = await uploadImage(imageFile);
 
   if (!imageUrl) {
     result = { status: 0, errorMessage: "Unable to upload image file." };
@@ -80,14 +78,46 @@ const addProduct = async (newProduct) => {
   return result;
 };
 
+const addProject = async (newProject) => {
+  let result = {};
+  const { imageUrl, path } = await uploadImage(newProject.imageFile);
+
+  if (!imageUrl) {
+    result = { status: 0, errorMessage: "unable to upload image file." };
+    return result;
+  }
+
+  const { data, error } = await supabase
+    .from("projects")
+    .insert({
+      title: newProject.title,
+      location: newProject.location,
+      imageUrl,
+      imagePath: path,
+      description: newProject.description,
+    })
+    .select();
+  error
+    ? (result = { status: 0, errorMessage: error.message })
+    : (result = { status: 1, data });
+
+  return result;
+};
+
 const getProducts = async () => {
   const { data } = await supabase.from("products").select();
 
   return data;
 };
 
+const getProjects = async () => {
+  const { data } = await supabase.from("projects").select();
+
+  return data;
+};
+
 const deleteProduct = async (product) => {
-  const imageStorageDeletion = await deleteProductImage(product.imagePath);
+  const imageStorageDeletion = await deleteImage(product.imagePath);
   if (!imageStorageDeletion) {
     return false;
   }
@@ -100,12 +130,25 @@ const deleteProduct = async (product) => {
   return !error ? true : false;
 };
 
+const deleteProject = async (project) => {
+  const imageStorageDeletion = await deleteImage(project.imagePath);
+
+  if (!imageStorageDeletion) {
+    return false;
+  }
+
+  const { error } = await supabase
+    .from("projects")
+    .delete()
+    .eq("id", project.id);
+
+  return !error ? true : false;
+};
+
 const updateProduct = async (updatedProduct) => {
   if (updatedProduct.newImage) {
     console.log("tries to delete the associated image with this product.");
-    const currentImageDeletion = await deleteProductImage(
-      updatedProduct.imagePath
-    );
+    const currentImageDeletion = await deleteImage(updatedProduct.imagePath);
 
     if (!currentImageDeletion) {
       return {
@@ -115,9 +158,7 @@ const updateProduct = async (updatedProduct) => {
       };
     }
 
-    const uploadUpdatedImage = await uploadProductImage(
-      updatedProduct.newImage
-    );
+    const uploadUpdatedImage = await uploadImage(updatedProduct.newImage);
 
     updatedProduct.imageUrl = uploadUpdatedImage.imageUrl;
     updatedProduct.imagePath = uploadUpdatedImage.imagePath;
@@ -133,9 +174,6 @@ const updateProduct = async (updatedProduct) => {
     .eq("id", updatedProduct.id)
     .select();
 
-  console.log(error);
-  console.log(data);
-
   return !error
     ? { status: 1, data: updatedProduct }
     : {
@@ -144,12 +182,53 @@ const updateProduct = async (updatedProduct) => {
       };
 };
 
+const updateProject = async (updatedProject) => {
+  if (updatedProject.newImage) {
+    const currentImageDeletion = await deleteImage(updatedProject.imagePath);
+
+    if (!currentImageDeletion) {
+      return {
+        status: 0,
+        errorMessage:
+          "unable to update the image associated with this product.",
+      };
+    }
+
+    const uploadUpdatedImage = await uploadImage(updatedProject.newImage);
+
+    updatedProject.imageUrl = uploadUpdatedImage.imageUrl;
+    updatedProject.imagePath = uploadUpdatedImage.imagePath;
+  }
+
+  const { data, error } = await supabase
+    .from("projects")
+    .update({
+      title: updatedProject.title,
+      description: updatedProject.description,
+      location: updatedProject.location,
+      imagePath: updatedProject.imagePath,
+      imageUrl: updatedProject.imageUrl,
+    })
+    .eq("id", updatedProject.id)
+    .select();
+
+  return !error
+    ? { status: 1, data: updatedProject }
+    : {
+        status: 0,
+        errorMessage: `unable to update project with id: ${updatedProject.id}`,
+      };
+};
+
 export {
   createUserAccount,
   loginUser,
   getProducts,
   addProduct,
-  uploadProductImage,
   deleteProduct,
   updateProduct,
+  addProject,
+  getProjects,
+  deleteProject,
+  updateProject
 };
