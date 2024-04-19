@@ -2,13 +2,27 @@
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import { createUserAccount } from "../../supabase/supabase.js";
+import Swal from "sweetalert2";
+import router from "@/router/index.js";
 
 const email = ref("");
 const password = ref("");
 
 const handleSignup = async () => {
   const result = await createUserAccount(email.value, password.value);
-  console.log(result);
+
+  if(result.status === 1){
+    router.push('/signup-success')
+  }else{
+    Swal.fire({
+        title: "Signup Failed.",
+        text: `Sign up with email: ${email.value} was unsuccessful.`,
+        icon: "error",
+        timer: 1500,
+        showConfirmButton: false,
+        confirmButtonColor: "rgba(205, 171, 100, 1)",
+      });
+  }
 };
 </script>
 
