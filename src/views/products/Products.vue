@@ -21,7 +21,7 @@ const handleDeleteProduct = async (product) => {
   isDeletionSuccessful
     ? Swal.fire({
         title: "Deleted!",
-        text: "Your project has been deleted.",
+        text: "Your product has been deleted.",
         icon: "success",
         timer: 1500,
         showConfirmButton: false,
