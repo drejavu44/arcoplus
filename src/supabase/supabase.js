@@ -16,7 +16,7 @@ const createUserAccount = async (email, password) => {
     console.log(data);
   }
 
-  return error ? error : data;
+  return error ? {status: 0, errorMessage: error} : {status: 1, data};
 };
 
 const loginUser = async (email, password) => {

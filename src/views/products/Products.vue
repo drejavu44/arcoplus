@@ -1,10 +1,10 @@
 <script setup>
-import { getProducts, deleteProduct } from "../supabase/supabase.js";
+import { getProducts, deleteProduct } from "../../supabase/supabase";
 import { ref, onMounted } from "vue";
-import AddProduct from "./addProduct.vue";
-import Navbar from "./navbar.vue";
-import Footer from "./footer.vue";
-import EditProductModal from "./editProductModal.vue";
+import AddProduct from "../../components/addProduct.vue";
+import Navbar from "../../components/navbar.vue";
+import Footer from "../../components/footer.vue";
+import EditProductModal from "../../components/editProductModal.vue";
 import Swal from "sweetalert2";
 
 const products = ref([]);
