@@ -79,16 +79,21 @@ onMounted(() => {
         <img :src="product.imageUrl" alt="Product Image" />
       </div>
       <div class="products-content">
-  <h2 :class="{ 'break-line': product.name.length > 20 }">{{ product.name }}</h2>
-  <div class="button-container">
-    <button class="edit-button" @click.stop="showEditProduct(product)">
-      <i class="fas fa-edit"></i> Edit
-    </button>
-    <button class="delete-button" @click.stop="handleDeleteProduct(product)">
-      <i class="fas fa-trash-alt"></i> Delete
-    </button>
-  </div>
-</div>
+        <h2 :class="{ 'break-line': product.name.length > 20 }">
+          {{ product.name }}
+        </h2>
+        <div class="button-container">
+          <button class="edit-button" @click.stop="showEditProduct(product)">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button
+            class="delete-button"
+            @click.stop="handleDeleteProduct(product)"
+          >
+            <i class="fas fa-trash-alt"></i> Delete
+          </button>
+        </div>
+      </div>
     </div>
   </div>
   <Footer />
@@ -104,8 +109,8 @@ onMounted(() => {
 }
 
 .products {
-  width: 300px; 
-  height: 100%;
+  width: 300px;
+  height: 320px;
   overflow: hidden;
   margin-right: 30px;
   margin-bottom: 35px;
@@ -121,7 +126,7 @@ onMounted(() => {
 
 .image-container {
   height: 200px;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .products img {
@@ -145,7 +150,12 @@ onMounted(() => {
 }
 
 .button-container {
+  position: absolute;
+  bottom: 10px; 
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
+  width: 95%;
   gap: 10px;
 }
 
@@ -154,13 +164,13 @@ onMounted(() => {
   background-color: rgba(205, 171, 100, 1);
   color: #fff;
   border: none;
-  padding: 5px 10px;
+  padding: 3px 10px; 
   border-radius: 5px;
   cursor: pointer;
   font-size: 13px;
   font-family: Poppins, sans-serif;
   transition: background-color 0.5s ease;
-  width: 100%;
+  width: 100%; 
 }
 
 .edit-button:hover {
@@ -190,4 +200,3 @@ onMounted(() => {
   }
 }
 </style>
-
