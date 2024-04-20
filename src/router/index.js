@@ -6,6 +6,7 @@ import LoginView from "../views/auth/LoginView.vue"
 import SignupView from "../views/auth/SignupView.vue"
 import ProjectsView from "../views/projects/ProjectsView.vue"
 import SignupSuccessView from "@/views/auth/SignupSuccessView.vue"
+import Loader from "@/Loader/Loader.vue"
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,11 @@ const router = createRouter({
             path:"/signup-success",
             name:"signup-success",
             component: SignupSuccessView
+        },
+        {
+            path:"/loader",
+            name:"loader",
+            component: Loader
         }
     ]
 })
