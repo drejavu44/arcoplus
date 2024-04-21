@@ -2,17 +2,17 @@
   <div class="home-container">
     <div class="home-background-div">
       <Navbar />
-      <div class="opening-text">
+      <div id ="home" class="opening-text">
         <h1>Transforming Ideas Into Structures</h1>
         <div class="content">
           <p>Got a project for us? We’ve got you covered.</p>
-          <button>GET A QUOTE</button>
+          <button @click="scrollToSection('quote')">GET A QUOTE</button>
         </div>
       </div>
     </div>
     <!--Socials <Social />-->
     <!-- About Us -->
-    <div class="about-us">
+    <div id="about" class="about-us">
       <div class="about-us-2">
         <div class="about-us-column">
           <img src="../assets/ap-about-us.jpg" class="about-us-image" />
@@ -38,11 +38,17 @@
     </div>
   </div>
     <!--Project-->
+    <div id ="projects">
     <Project />
+  </div>
     <!--Product-->
+    <div id ="products">
     <Product />
+  </div>
     <!--Quote Form-->
+    <div id ="quote">
     <QuoteForm />
+  </div>
   <!--CRUD-->
   <Footer />
 </template>
@@ -55,6 +61,16 @@ import Product from "../components/product.vue";
 import Project from "../components/project.vue";
 import QuoteForm from "../components/quoteform.vue";
 import { RouterLink } from "vue-router";
+
+const scrollToSection = (sectionId) => {
+  const section = document.getElementById(sectionId);
+  if (section) {
+    window.scrollTo({
+      top: section.offsetTop,
+      behavior: "smooth",
+    });
+  }
+};
 </script>
 
 <style scoped>

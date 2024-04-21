@@ -1,7 +1,7 @@
 <template>
   <div class="about-container">
     <div class="about-background-div">
-      <Navbar />
+      <AboutNavbar />
       <div class="opening-text">
         <h1>About Us</h1>
       </div>
@@ -25,7 +25,8 @@
                 popularised in the 1960s with the release of Letraset sheets
                 containing Lorem Ipsum passages, and more recently with desktop
                 publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum. <br /> <br />
+                Lorem Ipsum. <br />
+                <br />
 
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
@@ -191,7 +192,7 @@
 </template>
 
 <script setup>
-import Navbar from "../components/navbar.vue";
+import AboutNavbar from "../components/navbar-about.vue";
 import Footer from "../components/footer.vue";
 import { ref } from "vue";
 import Swal from "sweetalert2";
@@ -521,7 +522,9 @@ const handleButtonClick = () => {
 }
 
 @media only screen and (max-width: 768px) {
-  .wcu-5, .wcu-8, .wcu-11 {
+  .wcu-5,
+  .wcu-8,
+  .wcu-11 {
     overflow: auto; /* Show the overflow on smaller screens */
   }
 }
