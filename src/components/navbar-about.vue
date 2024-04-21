@@ -4,15 +4,16 @@
       <img src="../assets/logo.png" class="img" />
     </div>
     <div class="div-2">
-      <div class="nav-item" @click="scrollToSection('home')">Home</div>
-      <div class="nav-item" @click="scrollToSection('about')">About</div>
-      <div class="nav-item" @click="scrollToSection('projects')">Projects</div>
-      <div class="nav-item" @click="scrollToSection('products')">Products</div>
+      <RouterLink to="/" class="nav-link">Home</RouterLink>
+      <RouterLink to="/" class="nav-link">About</RouterLink>
+      <RouterLink to="/" class="nav-link">Projects</RouterLink>
+      <RouterLink to="/" class="nav-link">Products</RouterLink>
     </div>
   </div>
 </template>
 
 <script setup>
+import { RouterLink } from "vue-router";
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const isScrolled = ref(false);
@@ -28,16 +29,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
 });
-
-const scrollToSection = (sectionId) => {
-  const section = document.getElementById(sectionId);
-  if (section) {
-    window.scrollTo({
-      top: section.offsetTop,
-      behavior: "smooth",
-    });
-  }
-};
 </script>
 
 <style scoped>
@@ -66,14 +57,16 @@ const scrollToSection = (sectionId) => {
   color: #e5e6e8;
 }
 
-.nav-item {
+.nav-link {
   margin-left: 40px;
   font-family: Poppins, sans-serif;
   cursor: pointer;
   transition: color 0.3s ease;
+  color: #fff;
+  text-decoration: none;
 }
 
-.nav-item:hover {
+.nav-link:hover {
   color: rgba(205, 171, 100, 1);
 }
 
