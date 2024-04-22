@@ -15,6 +15,10 @@ const props = defineProps({
   updateProjectValue: {
     type: Function,
     required: true
+  },
+  toggleLoadingState: {
+    type: Function,
+    required: true
   }
 })
 
@@ -30,7 +34,9 @@ const handleFileInputChange = (event) => {
 }
 
 const submitForm = async() => {
+  props.toggleLoadingState()
   const result = await updateProject(updatedProject.value)
+  props.toggleLoadingState()
 
   if(result.status === 1){
     Swal.fire({

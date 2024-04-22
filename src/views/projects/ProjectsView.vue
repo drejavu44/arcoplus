@@ -6,14 +6,22 @@ import Footer from "../../components/footer.vue";
 import { onMounted, ref } from "vue";
 import EditProjectModal from "@/components/editProjectModal.vue";
 import Swal from "sweetalert2";
+import Loader from "@/Loader/Loader.vue";
 
 const projects = ref();
 const selectedProject = ref();
+const isLoading = ref(false)
 const showEditProjectModal = ref(false);
 
 const handleGetProjects = async () => {
+  isLoading.value = true
   projects.value = await getProjects();
+  isLoading.value = false
 };
+
+const toggleLoadingState = () => {
+  isLoading.value = !isLoading.value
+}
 
 const addNewProjectToArray = (project) => {
   projects.value = [...projects.value, project];
@@ -25,8 +33,9 @@ const showEditProject = (project) => {
 };
 
 const handleDeleteProject = async (project) => {
+  isLoading.value = true
   const isDeletionSuccessful = await deleteProject(project);
-
+  isLoading.value = false
   if (!isDeletionSuccessful) {
     Swal.fire({
       title: "Deletion Failed.",
@@ -66,35 +75,34 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Navbar />
-  <AddProject :addNewProjectToArray="addNewProjectToArray" />
-  <EditProjectModal
-    v-if="showEditProjectModal"
-    :updateProjectValue="updateProjectValue"
-    :selectedProject="selectedProject"
-    :hideEditProject="hideEditProject"
-  />
-  <div class="projects-container">
-    <div class="projects" v-for="project in projects">
-      <div class="image-container">
-        <img height="100px" width="100px" :src="project.imageUrl" />
-      </div>
-      <div class="projects-content">
-        <h2><i class="fa-solid fa-location-dot"></i> {{ project.location }}</h2>
-        <h1>{{ project.title }}</h1>
-        <p>{{ project.description }}</p>
-        <div class="button-container">
-          <button class="edit-button" @click="showEditProject(project)">
-            <i class="fas fa-edit"></i> Edit
-          </button>
-          <button class="delete-button" @click="handleDeleteProject(project)">
-            <i class="fas fa-trash-alt"></i> Delete
-          </button>
+  <Loader v-if="isLoading" />
+  <div v-else>
+    <Navbar />
+    <AddProject :addNewProjectToArray="addNewProjectToArray" :toggleLoadingState="toggleLoadingState"/>
+    <EditProjectModal v-if="showEditProjectModal" :updateProjectValue="updateProjectValue"
+      :selectedProject="selectedProject" :hideEditProject="hideEditProject" :toggleLoadingState="toggleLoadingState"/>
+    <div class="projects-container">
+      <div class="projects" v-for="project in projects">
+        <div class="image-container">
+          <img height="100px" width="100px" :src="project.imageUrl" />
+        </div>
+        <div class="projects-content">
+          <h2><i class="fa-solid fa-location-dot"></i> {{ project.location }}</h2>
+          <h1>{{ project.title }}</h1>
+          <p>{{ project.description }}</p>
+          <div class="button-container">
+            <button class="edit-button" @click="showEditProject(project)">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="delete-button" @click="handleDeleteProject(project)">
+              <i class="fas fa-trash-alt"></i> Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
+    <Footer />
   </div>
-  <Footer />
 </template>
 <style scoped>
 .projects-container {
@@ -167,11 +175,11 @@ onMounted(async () => {
 
 .button-container {
   position: absolute;
-  bottom: 10px; 
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  width: 95%; 
+  width: 95%;
   gap: 10px;
 }
 
@@ -186,7 +194,7 @@ onMounted(async () => {
   font-size: 13px;
   font-family: Poppins, sans-serif;
   transition: background-color 0.5s ease;
-  width: 100%; 
+  width: 100%;
 }
 
 .edit-button:hover {

@@ -15,6 +15,10 @@ const props = defineProps({
   updateProductValue: {
     type: Function,
     required: true
+  },
+  toggleLoadingState:{
+    type: Function,
+    required: true
   }
 })
 
@@ -30,10 +34,9 @@ const handleFileInputChange = (event) => {
 }
 
 const submitForm = async () => {
-  // Here, you can put your form submission logic
-
+  props.toggleLoadingState()
   const result = await updateProduct(updatedProduct.value)
-
+  props.toggleLoadingState()
   console.log(result)
 
   if (result.status === 1) {

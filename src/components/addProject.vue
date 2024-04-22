@@ -10,6 +10,10 @@ const props = defineProps({
     type: Function,
     required: true,
   },
+  toggleLoadingState: {
+    type: Function,
+    required: true
+  }
 });
 
 const handleFileInputChange = (event) => {
@@ -19,11 +23,13 @@ const handleFileInputChange = (event) => {
 };
 
 const handleAddProject = async () => {
+  props.toggleLoadingState()
   if (!newProject.value.imageFile) {
     return;
   }
 
   const result = await addProject(newProject.value);
+  props.toggleLoadingState()
 
   if (result.status === 0) {
     Swal.fire({
@@ -79,9 +85,9 @@ const handleAddProject = async () => {
           <input id="imageFile" type="file" @change="handleFileInputChange" />
         </div>
         <div class="mp-button">
-            <div class="input-group">
-          <button @click="handleAddProject">Submit</button>
-        </div>
+          <div class="input-group">
+            <button @click="handleAddProject">Submit</button>
+          </div>
         </div>
       </div>
     </div>
@@ -108,6 +114,7 @@ const handleAddProject = async () => {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
 }
+
 .mp-header {
   margin-bottom: 20px;
   display: flex;
@@ -159,7 +166,7 @@ const handleAddProject = async () => {
 }
 
 .input-group input[type="file"],
-.input-group textarea  {
+.input-group textarea {
   background-color: transparent;
 }
 
@@ -202,4 +209,3 @@ const handleAddProject = async () => {
   text-align: center;
 }
 </style>
-
