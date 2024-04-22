@@ -6,13 +6,17 @@ import Navbar from "../../components/navbar.vue";
 import Footer from "../../components/footer.vue";
 import EditProductModal from "../../components/editProductModal.vue";
 import Swal from "sweetalert2";
+import Loader from "@/Loader/Loader.vue";
 
+const isLoading = ref(false)
 const products = ref([]);
 const selectedProduct = ref({});
 const showEditProductModal = ref(false);
 
 const handleGetProducts = async () => {
+  isLoading.value = true
   products.value = await getProducts();
+  isLoading.value = false
 };
 
 const handleDeleteProduct = async (product) => {
@@ -20,21 +24,21 @@ const handleDeleteProduct = async (product) => {
 
   isDeletionSuccessful
     ? Swal.fire({
-        title: "Deleted!",
-        text: "Your product has been deleted.",
-        icon: "success",
-        timer: 1500,
-        showConfirmButton: false,
-        confirmButtonColor: "rgba(205, 171, 100, 1)",
-      })
+      title: "Deleted!",
+      text: "Your product has been deleted.",
+      icon: "success",
+      timer: 1500,
+      showConfirmButton: false,
+      confirmButtonColor: "rgba(205, 171, 100, 1)",
+    })
     : Swal.fire({
-        title: "Deletion Failed.",
-        text: "Your project has been deleted.",
-        icon: "error",
-        timer: 1500,
-        showConfirmButton: false,
-        confirmButtonColor: "rgba(205, 171, 100, 1)",
-      });
+      title: "Deletion Failed.",
+      text: "Your project has been deleted.",
+      icon: "error",
+      timer: 1500,
+      showConfirmButton: false,
+      confirmButtonColor: "rgba(205, 171, 100, 1)",
+    });
 
   products.value = products.value.filter((prod) => prod.id !== product.id);
 };
@@ -65,38 +69,34 @@ onMounted(() => {
 });
 </script>
 <template>
-  <Navbar />
-  <AddProduct :updateProductsArray="updateProductsArray" />
-  <EditProductModal
-    v-if="showEditProductModal"
-    :hideEditProduct="hideEditProduct"
-    :selectedProduct="selectedProduct"
-    :updateProductValue="updateProductValue"
-  />
-  <div class="products-container">
-    <div class="products" v-for="product in products" :key="product.id">
-      <div class="image-container">
-        <img :src="product.imageUrl" alt="Product Image" />
-      </div>
-      <div class="products-content">
-        <h2 :class="{ 'break-line': product.name.length > 20 }">
-          {{ product.name }}
-        </h2>
-        <div class="button-container">
-          <button class="edit-button" @click.stop="showEditProduct(product)">
-            <i class="fas fa-edit"></i> Edit
-          </button>
-          <button
-            class="delete-button"
-            @click.stop="handleDeleteProduct(product)"
-          >
-            <i class="fas fa-trash-alt"></i> Delete
-          </button>
+  <Loader v-if="isLoading" />
+  <div v-else>
+    <Navbar />
+    <AddProduct :updateProductsArray="updateProductsArray" />
+    <EditProductModal v-if="showEditProductModal" :hideEditProduct="hideEditProduct" :selectedProduct="selectedProduct"
+      :updateProductValue="updateProductValue" />
+    <div class="products-container">
+      <div class="products" v-for="product in products" :key="product.id">
+        <div class="image-container">
+          <img :src="product.imageUrl" alt="Product Image" />
+        </div>
+        <div class="products-content">
+          <h2 :class="{ 'break-line': product.name.length > 20 }">
+            {{ product.name }}
+          </h2>
+          <div class="button-container">
+            <button class="edit-button" @click.stop="showEditProduct(product)">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="delete-button" @click.stop="handleDeleteProduct(product)">
+              <i class="fas fa-trash-alt"></i> Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
+    <Footer />
   </div>
-  <Footer />
 </template>
 
 <style scoped>
@@ -151,7 +151,7 @@ onMounted(() => {
 
 .button-container {
   position: absolute;
-  bottom: 10px; 
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -164,13 +164,13 @@ onMounted(() => {
   background-color: rgba(205, 171, 100, 1);
   color: #fff;
   border: none;
-  padding: 3px 10px; 
+  padding: 3px 10px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 13px;
   font-family: Poppins, sans-serif;
   transition: background-color 0.5s ease;
-  width: 100%; 
+  width: 100%;
 }
 
 .edit-button:hover {
