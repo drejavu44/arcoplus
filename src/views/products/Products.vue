@@ -19,7 +19,12 @@ const handleGetProducts = async () => {
   isLoading.value = false
 };
 
+const toggleLoadingState = () => {
+  isLoading.value = !isLoading.value
+}
+
 const handleDeleteProduct = async (product) => {
+  isLoading.value = true
   const isDeletionSuccessful = await deleteProduct(product);
 
   isDeletionSuccessful
@@ -41,6 +46,7 @@ const handleDeleteProduct = async (product) => {
     });
 
   products.value = products.value.filter((prod) => prod.id !== product.id);
+  isLoading.value = false
 };
 
 const showEditProduct = (product) => {
@@ -72,9 +78,9 @@ onMounted(() => {
   <Loader v-if="isLoading" />
   <div v-else>
     <Navbar />
-    <AddProduct :updateProductsArray="updateProductsArray" />
+    <AddProduct :updateProductsArray="updateProductsArray" :toggleLoadingState="toggleLoadingState"/>
     <EditProductModal v-if="showEditProductModal" :hideEditProduct="hideEditProduct" :selectedProduct="selectedProduct"
-      :updateProductValue="updateProductValue" />
+      :updateProductValue="updateProductValue" :toggleLoadingState="toggleLoadingState" />
     <div class="products-container">
       <div class="products" v-for="product in products" :key="product.id">
         <div class="image-container">

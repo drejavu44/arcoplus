@@ -8,15 +8,20 @@ const props = defineProps({
     type: Function,
     required: true,
   },
+  toggleLoadingState: {
+    type: Function,
+    required: true
+  }
 });
-
 const newProduct = ref({});
 
 const handleAddProduct = async () => {
+  props.toggleLoadingState()
   if (!newProduct.value.imageFile) {
     return;
   }
   const response = await addProduct(newProduct.value);
+  props.toggleLoadingState()
   if (response.status === 0) {
     alert(response.errorMessage);
     return;
@@ -54,22 +59,12 @@ const handleFileInputChange = (event) => {
 
       <div class="input-group">
         <label for="productName">Product Name:</label><br />
-        <input
-          type="text"
-          id="productName"
-          name="productName"
-          v-model="newProduct.name"
-        />
+        <input type="text" id="productName" name="productName" v-model="newProduct.name" />
       </div>
 
       <div class="input-group">
         <label for="imageUrl">Upload Picture:</label><br />
-        <input
-          type="file"
-          id="imageUrl"
-          name="imageUrl"
-          @change="handleFileInputChange"
-        />
+        <input type="file" id="imageUrl" name="imageUrl" @change="handleFileInputChange" />
       </div>
       <div class="mp-button">
         <div class="input-group">
@@ -100,6 +95,7 @@ const handleFileInputChange = (event) => {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
 }
+
 .mp-header {
   margin-bottom: 20px;
   display: flex;
