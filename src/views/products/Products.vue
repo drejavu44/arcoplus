@@ -2,7 +2,6 @@
 import { getProducts, deleteProduct } from "../../supabase/supabase";
 import { ref, onMounted } from "vue";
 import AddProduct from "../../components/addProduct.vue";
-import Navbar from "../../components/navbar.vue";
 import Footer from "../../components/footer.vue";
 import EditProductModal from "../../components/editProductModal.vue";
 import Swal from "sweetalert2";
@@ -77,7 +76,6 @@ onMounted(() => {
 <template>
   <Loader v-if="isLoading" />
   <div v-else>
-    <Navbar />
     <AddProduct :updateProductsArray="updateProductsArray" :toggleLoadingState="toggleLoadingState"/>
     <EditProductModal v-if="showEditProductModal" :hideEditProduct="hideEditProduct" :selectedProduct="selectedProduct"
       :updateProductValue="updateProductValue" :toggleLoadingState="toggleLoadingState" />

@@ -1,4 +1,5 @@
 <script setup>
+import AdminNavbar from "../components/navbar-admin.vue";
 import { ref } from "vue";
 import Swal from "sweetalert2";
 import { addProject } from "@/supabase/supabase";
@@ -61,7 +62,8 @@ const handleAddProject = async () => {
   <div class="mp-background">
     <div class="container">
       <div class="mp-header">
-        <h1>Manage Products</h1>
+        <h1>Manage Projects</h1>
+        <AdminNavbar />
         <p>
           Add, edit, or delete products that are currently visible to the user
           on the homepage.
@@ -107,7 +109,6 @@ const handleAddProject = async () => {
 }
 
 .container {
-  margin-top: 50px;
   width: 90%;
   background-color: #1a1a1a35;
   padding: 30px;

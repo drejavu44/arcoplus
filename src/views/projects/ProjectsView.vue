@@ -1,7 +1,6 @@
 <script setup>
 import AddProject from "@/components/addProject.vue";
 import { getProjects, deleteProject } from "../../supabase/supabase.js";
-import Navbar from "../../components/navbar.vue";
 import Footer from "../../components/footer.vue";
 import { onMounted, ref } from "vue";
 import EditProjectModal from "@/components/editProjectModal.vue";
@@ -77,7 +76,6 @@ onMounted(async () => {
 <template>
   <Loader v-if="isLoading" />
   <div v-else>
-    <Navbar />
     <AddProject :addNewProjectToArray="addNewProjectToArray" :toggleLoadingState="toggleLoadingState"/>
     <EditProjectModal v-if="showEditProjectModal" :updateProjectValue="updateProjectValue"
       :selectedProject="selectedProject" :hideEditProject="hideEditProject" :toggleLoadingState="toggleLoadingState"/>

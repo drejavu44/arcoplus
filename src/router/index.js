@@ -6,6 +6,7 @@ import LoginView from "../views/auth/LoginView.vue"
 import SignupView from "../views/auth/SignupView.vue"
 import ProjectsView from "../views/projects/ProjectsView.vue"
 import SignupSuccessView from "@/views/auth/SignupSuccessView.vue"
+import AdminHomeView from "@/views/AdminHomeView.vue"
 import Loader from "@/Loader/Loader.vue"
 
 const router = createRouter({
@@ -45,6 +46,11 @@ const router = createRouter({
             path:"/signup-success",
             name:"signup-success",
             component: SignupSuccessView
+        },
+        {
+            path:"/adminhome",
+            name:"adminhome",
+            component: AdminHomeView
         },
         {
             path:"/loader",
