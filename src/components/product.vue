@@ -1,3 +1,22 @@
+<script setup>
+import { getProducts } from '../supabase/supabase.js'
+import { onMounted, ref } from 'vue'
+
+const isLoading = ref(false)
+const products = ref()
+
+const handleGetProducts = async () => {
+  isLoading.value = true
+  products.value = await getProducts()
+  isLoading.value = false
+}
+
+onMounted(async () => {
+  await handleGetProducts()
+})
+
+</script>
+
 <template>
   <!-- Projects Section -->
   <div class="prod-container">
@@ -9,88 +28,11 @@
       </p>
     </div>
     <div class="photo-container">
-      <div class="photo-column">
+      <div class="photo-column" v-for="product in products">
         <div class="image-wrapper">
-          <img
-            src="../assets/products/twin wall poly.jpg"
-            class="product-image"
-          />
+          <img :src="product.imageUrl" class="product-image" />
           <div class="image-overlay">
-            <p class="overlay-text">Twin Wall Polycarbonate Sheet</p>
-          </div>
-        </div>
-      </div>
-      <div class="photo-column">
-        <div class="image-wrapper">
-          <img
-            src="../assets/products/corrugated poly.jpg"
-            class="product-image"
-          />
-          <div class="image-overlay">
-            <p class="overlay-text">Corrugated Polycarbonate Sheet</p>
-          </div>
-        </div>
-      </div>
-      <div class="photo-column">
-        <div class="image-wrapper">
-          <img src="../assets/products/solid poly.jpg" class="product-image" />
-          <div class="image-overlay">
-            <p class="overlay-text">Solid Polycarbonate Sheet</p>
-          </div>
-        </div>
-      </div>
-      <div class="photo-column">
-        <div class="image-wrapper">
-          <img
-            src="../assets/products/twin wall poly 2.jpg"
-            class="product-image"
-          />
-          <div class="image-overlay">
-            <p class="overlay-text">Twin Wall Polycarbonate Sheet</p>
-          </div>
-        </div>
-      </div>
-      <div class="photo-column">
-        <div class="image-wrapper">
-          <img
-            src="../assets/products/pvc laminated ceiling.jpeg"
-            class="product-image"
-          />
-          <div class="image-overlay">
-            <p class="overlay-text">PVC Laminated Ceiling</p>
-          </div>
-        </div>
-      </div>
-      <div class="photo-column">
-        <div class="image-wrapper">
-          <img
-            src="../assets/products/acrylic sheet.jpg"
-            class="product-image"
-          />
-          <div class="image-overlay">
-            <p class="overlay-text">Acrylic Sheet</p>
-          </div>
-        </div>
-      </div>
-      <div class="photo-column">
-        <div class="image-wrapper">
-          <img
-            src="../assets/products/aluminum frame.jpg"
-            class="product-image"
-          />
-          <div class="image-overlay">
-            <p class="overlay-text">Aluminum Frame</p>
-          </div>
-        </div>
-      </div>
-      <div class="photo-column">
-        <div class="image-wrapper">
-          <img
-            src="../assets/products/colored acrylic.jpg"
-            class="product-image"
-          />
-          <div class="image-overlay">
-            <p class="overlay-text">Colored Acrylic Sheet</p>
+            <p class="overlay-text">{{ product.name }}</p>
           </div>
         </div>
       </div>
