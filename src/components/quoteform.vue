@@ -3,6 +3,34 @@
     <div class="quote-form">
       <div class="quote-form-3">
         <div class="quote-form-4">
+          <div class="quote-column-1">
+            <div class="contact-info">
+              <h1 class="quote-contact">Contact Us</h1>
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div class="contact-text">
+                  <h2 class="contact-heading">Email</h2>
+                  <span>arcoplusph@gmail.com</span>
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div class="contact-text">
+                  <h2 class="contact-heading">Phone</h2>
+                  <span>+63 915 592 6361</span>
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="contact-text">
+                  <h2 class="contact-heading">Address</h2>
+                  <span
+                    >Greenlane Subdivision, Pamplona Tres, Las Pinas City</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="quote-form-column-2">
             <div class="quote-form-5">
               <div class="quote-form-6">Got a project?</div>
@@ -34,9 +62,6 @@
                 <button type="submit" @click="handleButtonClick">Submit</button>
               </div>
             </div>
-          </div>
-          <div class="quote-form-column">
-            <img src="../assets/ap-11.jpg" class="quote-form-image" />
           </div>
         </div>
       </div>
@@ -75,10 +100,10 @@ const handleButtonClick = () => {
 
 .quote-form {
   display: flex;
-  max-width: 75%;
+  max-width: 100%;
   flex-direction: column;
   margin: 0 auto;
-  padding: 80px;
+  padding: 45px;
 }
 
 .quote-form-3 {
@@ -96,23 +121,13 @@ const handleButtonClick = () => {
   display: flex;
   flex-direction: column;
   line-height: normal;
-  width: 50%;
-}
-
-.quote-form-image {
-  aspect-ratio: 0.88;
-  object-fit: auto;
-  object-position: center;
-  width: 100%;
-  flex-grow: 1;
 }
 
 .quote-form-column-2 {
   display: flex;
   flex-direction: column;
   line-height: normal;
-  width: 50%;
-  margin-left: 20px;
+  width: 100%;
 }
 
 .quote-form-5 {
@@ -198,5 +213,50 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: rgba(205, 171, 100, 1);
   color: white;
+}
+
+.quote-column-1 {
+  background-image: url("../assets/ap-9-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  font-family: Poppins, sans-serif;
+  width: 40%;
+}
+
+.contact-info {
+  flex-direction: column;
+}
+
+.contact-item {
+  margin-bottom: 10px;
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+}
+
+.contact-item h2 {
+  font-size: 12px;
+}
+
+.contact-text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.contact-heading {
+  margin: 0;
+  color: white;
+}
+
+.contact-text span {
+  color: white;
+  font-size: 16px;
 }
 </style>

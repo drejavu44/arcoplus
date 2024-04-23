@@ -4,17 +4,18 @@
       <img src="../assets/logo.png" class="img" />
     </div>
     <div class="div-2">
-      <RouterLink to="/" class="nav-link">Home</RouterLink>
-      <RouterLink to="/" class="nav-link">About</RouterLink>
-      <RouterLink to="/" class="nav-link">Projects</RouterLink>
-      <RouterLink to="/" class="nav-link">Products</RouterLink>
+      <RouterLink class="nav-item" to="/">Home</RouterLink>
+      <RouterLink class="nav-item" to="/">About</RouterLink>
+      <RouterLink class="nav-item" to="/">Projects</RouterLink>
+      <RouterLink class="nav-item" to="/">Products</RouterLink>
+      <RouterLink class="nav-item" to="/application">Application</RouterLink>
     </div>
   </div>
 </template>
 
 <script setup>
-import { RouterLink } from "vue-router";
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import { RouterLink } from 'vue-router';
 
 const isScrolled = ref(false);
 
@@ -29,6 +30,16 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
 });
+
+const scrollToSection = (sectionId) => {
+  const section = document.getElementById(sectionId);
+  if (section) {
+    window.scrollTo({
+      top: section.offsetTop,
+      behavior: "smooth",
+    });
+  }
+};
 </script>
 
 <style scoped>
@@ -48,7 +59,7 @@ onBeforeUnmount(() => {
 
 .div {
   padding: 10px;
-  margin-right: 50%;
+  margin-right: 40%;
 }
 
 .div-2 {
@@ -57,16 +68,16 @@ onBeforeUnmount(() => {
   color: #e5e6e8;
 }
 
-.nav-link {
+.nav-item {
   margin-left: 40px;
   font-family: Poppins, sans-serif;
   cursor: pointer;
-  transition: color 0.3s ease;
-  color: #fff;
   text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
 }
 
-.nav-link:hover {
+.nav-item:hover {
   color: rgba(205, 171, 100, 1);
 }
 

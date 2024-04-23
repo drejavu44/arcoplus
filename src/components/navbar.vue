@@ -8,12 +8,14 @@
       <div class="nav-item" @click="scrollToSection('about')">About</div>
       <div class="nav-item" @click="scrollToSection('projects')">Projects</div>
       <div class="nav-item" @click="scrollToSection('products')">Products</div>
+      <RouterLink class="nav-item" to="/application">Application</RouterLink>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import { RouterLink } from 'vue-router';
 
 const isScrolled = ref(false);
 
@@ -57,7 +59,7 @@ const scrollToSection = (sectionId) => {
 
 .div {
   padding: 10px;
-  margin-right: 50%;
+  margin-right: 40%;
 }
 
 .div-2 {
@@ -70,6 +72,8 @@ const scrollToSection = (sectionId) => {
   margin-left: 40px;
   font-family: Poppins, sans-serif;
   cursor: pointer;
+  text-decoration: none;
+  color: white;
   transition: color 0.3s ease;
 }
 
