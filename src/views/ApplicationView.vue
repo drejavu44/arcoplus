@@ -39,9 +39,9 @@
                       <option value="" disabled selected>
                         Select a job position
                       </option>
-                      <option value="1">Point Guard</option>
-                      <option value="2">Shooting Guard</option>
-                      <option value="3">Security Guard</option>
+                      <option value="1">Engineer</option>
+                      <option value="2">AutoCAD Operator</option>
+                      <option value="3">Installer/Fabricator</option>
                     </select>
                   </div>
                   <div class="form-group">
