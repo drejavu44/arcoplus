@@ -1,4 +1,5 @@
 <script setup>
+import AdminNavbar from "../components/navbar-admin.vue";
 import { addProduct } from "../supabase/supabase.js";
 import { ref } from "vue";
 import Swal from "sweetalert2";
@@ -51,6 +52,7 @@ const handleFileInputChange = (event) => {
     <div class="container">
       <div class="mp-header">
         <h1>Manage Products</h1>
+        <AdminNavbar />
         <p>
           Add, edit, or delete products that are currently visible to the user
           on the homepage.
@@ -88,7 +90,6 @@ const handleFileInputChange = (event) => {
 }
 
 .container {
-  margin-top: 50px;
   width: 90%;
   background-color: #1a1a1a35;
   padding: 30px;
