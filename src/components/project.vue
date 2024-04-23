@@ -1,3 +1,21 @@
+<script setup>
+import { getProjects } from '@/supabase/supabase';
+import {onMounted, ref} from 'vue'
+
+const projects = ref()
+const isLoading = ref(false)
+
+const handleGetProjects = async() => {
+  isLoading.value = true
+  projects.value = await getProjects()
+  isLoading.value = false
+}
+
+onMounted(async() => {
+  await handleGetProjects()
+})
+</script>
+
 <template>
   <!-- Projects -->
   <div class="proj-container">
@@ -10,123 +28,17 @@
     </div>
     <div class="project-grid">
       <!-- Project 1 -->
-      <div class="project">
+      <div class="project" v-for="project in projects">
         <div class="project-details">
-          <img src="../assets/projects/ap-1.jpg" class="project-image" />
+          <img :src="project.imageUrl" class="project-image" />
           <div class="project-location">
             <img
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
-              class="company-logo"
-            />
-            Lorem City
+              class="company-logo" />
+            {{ project.title }}
           </div>
-          <div class="project-address">420 Cornelia Street</div>
-          <div class="project-name">Lorem Ipsum</div>
-        </div>
-      </div>
-      <!-- Project 2 -->
-      <div class="project">
-        <div class="project-details">
-          <img src="../assets/projects/ap-4.jpg" class="project-image" />
-          <div class="project-location">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
-              class="company-logo"
-            />
-            Lorem City
-          </div>
-          <div class="project-address">421 Cornelia Street</div>
-          <div class="project-name">Lorem Ipsum</div>
-        </div>
-      </div>
-      <!-- Project 3 -->
-      <div class="project">
-        <div class="project-details">
-          <img src="../assets/projects/ap-8.jpg" class="project-image" />
-          <div class="project-location">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
-              class="company-logo"
-            />
-            Lorem City
-          </div>
-          <div class="project-address">422 Cornelia Street</div>
-          <div class="project-name">Lorem Ipsum</div>
-        </div>
-      </div>
-      <!-- Project 4 -->
-      <div class="project">
-        <div class="project-details">
-          <img src="../assets/projects/ap-3.jpg" class="project-image" />
-          <div class="project-location">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
-              class="company-logo"
-            />
-            Lorem City
-          </div>
-          <div class="project-address">423 Cornelia Street</div>
-          <div class="project-name">Lorem Ipsum</div>
-        </div>
-      </div>
-      <!-- Project 5 -->
-      <div class="project">
-        <div class="project-details">
-          <img src="../assets/projects/ap-5.jpg" class="project-image" />
-          <div class="project-location">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
-              class="company-logo"
-            />
-            Lorem City
-          </div>
-          <div class="project-address">424 Cornelia Street</div>
-          <div class="project-name">Lorem Ipsum</div>
-        </div>
-      </div>
-      <!-- Project 6 -->
-      <div class="project">
-        <div class="project-details">
-          <img src="../assets/projects/ap-6.jpg" class="project-image" />
-          <div class="project-location">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
-              class="company-logo"
-            />
-            Lorem City
-          </div>
-          <div class="project-address">425 Cornelia Street</div>
-          <div class="project-name">Lorem Ipsum</div>
-        </div>
-      </div>
-      <!-- Project 7 -->
-      <div class="project">
-        <div class="project-details">
-          <img src="../assets/projects/ap-2.jpg" class="project-image" />
-          <div class="project-location">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
-              class="company-logo"
-            />
-            Lorem City
-          </div>
-          <div class="project-address">426 Cornelia Street</div>
-          <div class="project-name">Lorem Ipsum</div>
-        </div>
-      </div>
-      <!-- Project 8 -->
-      <div class="project">
-        <div class="project-details">
-          <img src="../assets/projects/ap-7.jpg" class="project-image" />
-          <div class="project-location">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
-              class="company-logo"
-            />
-            Lorem City
-          </div>
-          <div class="project-address">427 Cornelia Street</div>
-          <div class="project-name">Lorem Ipsum</div>
+          <div class="project-address">{{ project.location }}</div>
+          <div class="project-name">{{ project.description }}</div>
         </div>
       </div>
     </div>
