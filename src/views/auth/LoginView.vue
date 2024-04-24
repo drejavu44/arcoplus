@@ -2,26 +2,44 @@
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import { loginUser } from "../../supabase/supabase.js";
+import Loader from "@/Loader/Loader.vue";
+import router from "@/router/index.js";
+import Swal from "sweetalert2";
 
 const email = ref("");
 const password = ref("");
+const isLoading = ref(false)
 
 const handleLogin = async () => {
+  if(email.value === "" || password.value === ""){
+    alert("email and password should not be empty.")
+    return
+  }
+  isLoading.value = true
   const result = await loginUser(email.value, password.value);
+  isLoading.value = false
 
-  console.log(result);
+  if (result.status === 1) {
+    router.push('/adminhome')
+  } else {
+    Swal.fire({
+      title: "Login Failed.",
+      text: result.errorMessage,
+      icon: "error",
+      timer: 1500,
+      showConfirmButton: false,
+      confirmButtonColor: "rgba(205, 171, 100, 1)",
+    });
+  }
 };
 </script>
 
 <template>
-  <div id="app" class="login-container">
+  <Loader v-if="isLoading" />
+  <div v-else id="app" class="login-container">
     <div class="login-form">
       <div class="login-header">
-        <img
-          src="../../assets/LOGO TRANSPARENT 3.png"
-          class="login-logo"
-          alt="ArcoPlus Logo"
-        />
+        <img src="../../assets/LOGO TRANSPARENT 3.png" class="login-logo" alt="ArcoPlus Logo" />
         <h1>Welcome to ArcoPlus</h1>
         <p>Please enter your credentials to sign in!</p>
       </div>
@@ -35,9 +53,7 @@ const handleLogin = async () => {
       </div>
       <div class="button-container">
         <button @click="handleLogin">Login</button>
-        <RouterLink to="/signup" class="signup-link"
-          >No Account? Sign up</RouterLink
-        >
+        <RouterLink to="/signup" class="signup-link">No Account? Sign up</RouterLink>
       </div>
     </div>
   </div>

@@ -1,9 +1,25 @@
+<script setup>
+import AdminNavbar from "../components/navbar-admin.vue"
+import { ref, onMounted } from "vue"
+import { getUserSession } from "@/supabase/supabase";
+
+const userAccount = ref()
+
+const getUserAccount = async () => {
+  userAccount.value = await getUserSession()
+}
+
+onMounted(async () => {
+  await getUserAccount()
+})
+</script>
+
 <template>
   <div class="adminhome-container">
     <div class="adminhome-background-div">
       <div id="home" class="opening-text">
         <AdminNavbar />
-        <h1>Welcome, <b>Email of user</b></h1>
+        <h1>Welcome, <b>{{ userAccount?.session.user.user_metadata.firstName }}</b></h1>
         <div class="content">
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
         </div>
@@ -19,16 +35,13 @@
         </p>
       </div>
     </div>
-</div>
+  </div>
 </template>
-
-<script setup>
-import AdminNavbar from "../components/navbar-admin.vue"
-</script>
 
 <style scoped>
 .adminhome-container {
-  margin: 0; /* Adjust margin */
+  margin: 0;
+  /* Adjust margin */
 }
 
 .adminhome-background-div {
@@ -44,6 +57,7 @@ import AdminNavbar from "../components/navbar-admin.vue"
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -73,7 +87,8 @@ import AdminNavbar from "../components/navbar-admin.vue"
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: -75px;;
+  margin-top: -75px;
+  ;
   font-size: 22px;
   color: white;
   font-family: Poppins, sans-serif;
