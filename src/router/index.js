@@ -8,6 +8,8 @@ import ProjectsView from "../views/projects/ProjectsView.vue"
 import SignupSuccessView from "@/views/auth/SignupSuccessView.vue"
 import AdminHomeView from "@/views/AdminHomeView.vue"
 import Loader from "@/Loader/Loader.vue"
+import UnauthorizedView from "@/views/auth/UnauthorizedView.vue"
+import { getUserSession } from "@/supabase/supabase"
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,7 +27,8 @@ const router = createRouter({
         {
             path:"/products",
             name:"products",
-            component: Products
+            component: Products,
+            meta: {requiresAuth: true}
         },
         {
             path:"/login",
@@ -40,24 +43,49 @@ const router = createRouter({
         {
             path:"/projects",
             name:"projects",
-            component: ProjectsView
+            component: ProjectsView,
+            meta: {requiresAuth: true}
         },
         {
             path:"/signup-success",
             name:"signup-success",
-            component: SignupSuccessView
+            component: SignupSuccessView,
+            meta: {requiresAuth: true}
         },
         {
             path:"/adminhome",
             name:"adminhome",
-            component: AdminHomeView
+            component: AdminHomeView,
+            meta: {requiresAuth: true}
         },
         {
             path:"/loader",
             name:"loader",
             component: Loader
+        },
+        {
+            path:"/unauthorized",
+            name:"unauthorized",
+            component: UnauthorizedView
         }
     ]
+})
+
+const getUser = async(next) => {
+    const localUser = await getUserSession();
+    if(!localUser.session){
+        router.push("/unauthorized")
+    }else{
+        next();
+    }
+}
+
+router.beforeEach(async(to, from, next)=> {
+    if(to.meta.requiresAuth){
+        await getUser(next);
+    }else{
+        next()
+    }
 })
 
 export default router

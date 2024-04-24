@@ -7,17 +7,25 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jamprcWpkaWpneG5nZGJzb216Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI3MTc1NjksImV4cCI6MjAyODI5MzU2OX0.IaUrbyejMvkbX_t2tpyQNssWpLM_Y4AkSDIc8aQQZgc"
 );
 
-const createUserAccount = async (email, password) => {
-  const { data, error } = await supabase.auth.signUp({ email, password });
+const createUserAccount = async (newUser) => {
+  const { data, error } = await supabase.auth.signUp({
+    email: newUser.email,
+    password: newUser.password,
+    options: {
+      data: { firstName: newUser.firstName, lastName: newUser.lastName },
+    },
+  });
 
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(data);
-  }
-
-  return error ? {status: 0, errorMessage: error} : {status: 1, data};
+  return error
+    ? { status: 0, errorMessage: error.message }
+    : { status: 1, data };
 };
+
+const getUserSession = async() => {
+  const {data} = await supabase.auth.getSession()
+
+  return data
+}
 
 const loginUser = async (email, password) => {
   const { data, error } = await supabase.auth.signInWithPassword({
@@ -25,7 +33,9 @@ const loginUser = async (email, password) => {
     password,
   });
 
-  return error ? { status: 0, errorMessage: error } : { status: 1, data };
+  return error
+    ? { status: 0, errorMessage: error.message }
+    : { status: 1, data };
 };
 
 const uploadImage = async (imageFile) => {
@@ -230,5 +240,6 @@ export {
   addProject,
   getProjects,
   deleteProject,
-  updateProject
+  updateProject,
+  getUserSession
 };

@@ -5,23 +5,30 @@ import { createUserAccount } from "../../supabase/supabase.js";
 import Swal from "sweetalert2";
 import router from "@/router/index.js";
 
-const email = ref("");
-const password = ref("");
+const newUser = ref({})
+const isLoading = ref(false)
 
 const handleSignup = async () => {
-  const result = await createUserAccount(email.value, password.value);
+  if(!newUser.value.email || !newUser.value.password || !newUser.value.firstName || !newUser.value.lastName){
+    alert("All fields are required.")
+    return
+  }
 
-  if(result.status === 1){
+  isLoading.value = true
+  const result = await createUserAccount(newUser.value);
+  isLoading.value = false
+
+  if (result.status === 1) {
     router.push('/signup-success')
-  }else{
+  } else {
     Swal.fire({
-        title: "Signup Failed.",
-        text: `Sign up with email: ${email.value} was unsuccessful.`,
-        icon: "error",
-        timer: 1500,
-        showConfirmButton: false,
-        confirmButtonColor: "rgba(205, 171, 100, 1)",
-      });
+      title: "Signup Failed.",
+      text: `Sign up with email: ${email.value} was unsuccessful.`,
+      icon: "error",
+      timer: 1500,
+      showConfirmButton: false,
+      confirmButtonColor: "rgba(205, 171, 100, 1)",
+    });
   }
 };
 </script>
@@ -30,21 +37,25 @@ const handleSignup = async () => {
   <div id="app" class="signup-container">
     <div class="signup-form">
       <div class="signup-header">
-        <img
-          src="../../assets/LOGO TRANSPARENT 3.png"
-          class="signup-logo"
-          alt="ArcoPlus Logo"
-        />
+        <img src="../../assets/LOGO TRANSPARENT 3.png" class="signup-logo" alt="ArcoPlus Logo" />
         <h1>Welcome to ArcoPlus</h1>
         <p>Please enter needed credentials to sign up!</p>
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" v-model="email" required />
+        <input type="email" id="email" v-model="newUser.email" required />
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" required />
+        <input type="password" id="password" v-model="newUser.password" required />
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" v-model="newUser.firstName" required />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" v-model="newUser.lastName" required />
       </div>
       <div class="button-container">
         <button @click="handleSignup">Signup</button>
@@ -115,7 +126,8 @@ label {
 }
 
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="text"] {
   padding: 10px;
   border: 1px solid #e0e0e026;
   border-radius: 4px;
