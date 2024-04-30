@@ -49,10 +49,6 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("../assets/ap-pro-bg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   width: 100%;
 }
 

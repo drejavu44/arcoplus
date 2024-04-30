@@ -6,8 +6,8 @@
     <div class="div-2">
       <div :class="{ navItem: true, active: activeSection === 'home' }" @click="scrollToSection('home')">Home</div>
       <div :class="{ navItem: true, active: activeSection === 'about' }" @click="scrollToSection('about')">About</div>
-      <div :class="{ navItem: true, active: activeSection === 'products' }" @click="scrollToSection('products')">Products</div>
       <div :class="{ navItem: true, active: activeSection === 'projects' }" @click="scrollToSection('projects')">Projects</div>
+      <div :class="{ navItem: true, active: activeSection === 'products' }" @click="scrollToSection('products')">Products</div>
       <RouterLink class="navItem" to="/application">Application</RouterLink>
     </div>
   </div>

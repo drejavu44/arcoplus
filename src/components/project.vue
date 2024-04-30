@@ -52,10 +52,7 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("../assets/ap-abt-bg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #fafafa;
 }
 
 .proj-section-header {

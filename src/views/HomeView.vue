@@ -87,13 +87,13 @@
       </div>
     </div>
   </div>
-  <!--Product-->
-  <div id="products">
-    <Product />
-  </div>
   <!--Project-->
   <div id="projects">
     <Project />
+  </div>
+  <!--Product-->
+  <div id="products">
+    <Product />
   </div>
   <!--Quote Form-->
   <div id="quote">
@@ -197,10 +197,7 @@ const scrollToSection = (sectionId) => {
 .about-us-wcu {
   padding: 80px;
   height: 800px;
-  background-image: url("../assets/ap-abt-bg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  margin-bottom: 50px;
 }
 
 .about-us-2 {

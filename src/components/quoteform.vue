@@ -95,10 +95,7 @@ const handleButtonClick = () => {
 <style scoped>
 /* quote form section */
 .quote-form-container {
-  background-image: url("../assets/ap-quote-bg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+ background-color: #fafafa;
 }
 
 .quote-form {
@@ -218,7 +215,10 @@ button[type="submit"]:hover {
 }
 
 .quote-column-1 {
-  background-color: #1e1e1e7e;
+  background-image: url("../assets/ap-9-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 20px;
   display: flex;
   flex-direction: column;
