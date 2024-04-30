@@ -102,7 +102,7 @@ onMounted(async () => {
 
 .project-details {
   margin-top: 10px;
-  background-color: #1e1e1e;
+  background-color: #ececec;
   min-height: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
@@ -118,7 +118,7 @@ onMounted(async () => {
 
 .project-location {
   font-family: Poppins, sans-serif;
-  color: white;
+  color: #1e1e1ec1;
   font-size: 18px;
   font-weight: bold;
 }

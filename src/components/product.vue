@@ -110,7 +110,7 @@ onMounted(async () => {
   width: 100%;
   height: 100%;
   max-height: 100%;
-  background-color: rgba(205, 172, 100, 0.588);
+  background-color: #ececec5f;
   display: flex;
   justify-content: center;
   align-items: center;
