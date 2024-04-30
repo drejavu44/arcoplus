@@ -27,6 +27,7 @@ onMounted(async () => {
         needs.
       </p>
     </div>
+  
     <div class="photo-container">
       <div class="photo-column" v-for="product in products">
         <div class="image-wrapper">
@@ -38,6 +39,8 @@ onMounted(async () => {
       </div>
     </div>
   </div>
+
+  
 </template>
 
 <style scoped>
@@ -46,6 +49,11 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url("../assets/ap-pro-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
 }
 
 .prod-section-header {
@@ -68,7 +76,6 @@ onMounted(async () => {
   font-size: 15px;
   font-family: Poppins, sans-serif;
   font-weight: normal;
-  margin-bottom: 8%;
 }
 
 .photo-container {
@@ -79,7 +86,7 @@ onMounted(async () => {
 .photo-column {
   flex: 10 10 calc(25% - 20px);
   margin: 0;
-  margin-bottom: -5px;
+  margin-bottom: -10px;
   position: relative;
   cursor: pointer;
 }

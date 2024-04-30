@@ -8,14 +8,20 @@
       <RouterLink class="nav-item" to="/">About</RouterLink>
       <RouterLink class="nav-item" to="/">Projects</RouterLink>
       <RouterLink class="nav-item" to="/">Products</RouterLink>
-      <RouterLink class="nav-item" to="/application">Application</RouterLink>
+      <RouterLink
+        class="nav-item"
+        :class="{ active: $route.path === '/application' }"
+        exact
+        to="/application"
+        >Application</RouterLink
+      >
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import { RouterLink } from 'vue-router';
+import { RouterLink } from "vue-router";
 
 const isScrolled = ref(false);
 
@@ -90,5 +96,9 @@ const scrollToSection = (sectionId) => {
 .nav-container.scrolled {
   background-color: #1e1e1e;
   padding: 5px 20px;
+}
+
+.nav-item.active {
+  color: rgba(205, 171, 100, 1);
 }
 </style>

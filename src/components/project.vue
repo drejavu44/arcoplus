@@ -1,19 +1,19 @@
 <script setup>
-import { getProjects } from '@/supabase/supabase';
-import {onMounted, ref} from 'vue'
+import { getProjects } from "@/supabase/supabase";
+import { onMounted, ref } from "vue";
 
-const projects = ref()
-const isLoading = ref(false)
+const projects = ref();
+const isLoading = ref(false);
 
-const handleGetProjects = async() => {
-  isLoading.value = true
-  projects.value = await getProjects()
-  isLoading.value = false
-}
+const handleGetProjects = async () => {
+  isLoading.value = true;
+  projects.value = await getProjects();
+  isLoading.value = false;
+};
 
-onMounted(async() => {
-  await handleGetProjects()
-})
+onMounted(async () => {
+  await handleGetProjects();
+});
 </script>
 
 <template>
@@ -31,20 +31,19 @@ onMounted(async() => {
       <div class="project" v-for="project in projects">
         <div class="project-details">
           <img :src="project.imageUrl" class="project-image" />
-          <div class="project-location">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b7a1bcf87641e36f148e5b34797d93a07f96aec9329308296333bf3bfc3dbb9?"
-              class="company-logo" />
-            {{ project.title }}
+          <div class="project-details-2">
+            <div class="project-location">
+              <p><i class="fa-solid fa-location-dot"></i></p>
+              {{ project.title }}
+            </div>
+            <div class="project-address">{{ project.location }}</div>
+            <div class="project-name">{{ project.description }}</div>
           </div>
-          <div class="project-address">{{ project.location }}</div>
-          <div class="project-name">{{ project.description }}</div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
 
 <style scoped>
 /* Projects section */
@@ -53,7 +52,10 @@ onMounted(async() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(240, 240, 240, 0.45);
+  background-image: url("../assets/ap-abt-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .proj-section-header {
@@ -98,42 +100,48 @@ onMounted(async() => {
   max-height: 200px;
   width: 100%;
   box-shadow: 0px 6px 16px 0px rgba(0, 0, 0, 0.02);
-  border-radius: 16px;
+  transition: transform 0.3s ease;
 }
 
 .project-details {
   margin-top: 10px;
-  background-color: rgba(240, 240, 240, 0.45);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 1);
-  padding: 16px;
-  transition: transform 0.3s ease;
+  background-color: #1e1e1e;
+  min-height: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-.company-logo {
-  width: 12px;
+.project-details-2 {
+  padding: 8px;
+}
+
+.project-location p {
+  display: inline;
+  color: rgba(205, 171, 100, 1);
 }
 
 .project-location {
   font-family: Poppins, sans-serif;
-  margin-top: 10px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .project-address {
-  color: #1e1e1e;
+  color: #9d9d9d;
   letter-spacing: 0.5px;
-  margin-top: 8px;
-  font: 700 16px Poppins, sans-serif;
+  font-family: Poppins, sans-serif;
+  font-size: 12px;
+  margin-bottom: 10px;
 }
 
 .project-name {
-  color: var(--Gray-600, #636363);
+  color: var(--Gray-600, #9d9d9d);
   letter-spacing: 0.18px;
   margin-top: 4px;
-  font: 14px Poppins, sans-serif;
+  font: 10px Poppins, sans-serif;
 }
 
-.project:hover .project-details {
+.project:hover .project-image {
   transform: scale(1.1);
 }
 </style>

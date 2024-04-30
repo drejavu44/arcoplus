@@ -3,7 +3,7 @@
     <div class="about-background-div">
       <Navbar />
       <div class="opening-text">
-        <h1>Work With Us</h1>
+        <h1>WORK WITH US</h1>
         <p>Join our dynamic team and be part of something extraordinary.</p>
       </div>
     </div>
@@ -94,11 +94,12 @@ const handleButtonClick = () => {
 }
 
 .about-background-div {
-  background-image: url("../assets/ap-bg-3.jpg");
+  background-image: url("../assets/ap-app-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
+  height: 450px;
+  max-width: 100%; /* Set maximum width */
 }
 
 @keyframes fadeInUp {
@@ -117,11 +118,12 @@ const handleButtonClick = () => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 800px;
-  font-size: 45px;
+  height: 450px;
+  font-size: 25px;
   color: white;
   font-family: Poppins, sans-serif;
   text-align: center;
+  text-shadow: 1px 1px 30px rgba(44, 44, 44, 0.4);
   animation: fadeInUp 1s ease forwards;
 }
 
@@ -139,14 +141,15 @@ const handleButtonClick = () => {
 }
 
 .opening-text p {
-  font-size: 25px;
+  font-size: 20px;
   margin-top: -35px;
+  text-shadow: 1px 1px 30px rgba(44, 44, 44, 0.4);
 }
 
 
 /*Work With Us*/
 .wwu-container {
-  background-color: rgba(240, 240, 240, 0.45);
+  background-color: #fdfdfd;
 }
 
 .wwu-section-header {
