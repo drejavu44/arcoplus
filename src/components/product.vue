@@ -72,11 +72,13 @@ onMounted(async () => {
   font-size: 15px;
   font-family: Poppins, sans-serif;
   font-weight: normal;
+  margin-bottom: 1%;
 }
 
 .photo-container {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 3%;
 }
 
 .photo-column {

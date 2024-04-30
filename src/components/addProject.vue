@@ -98,7 +98,7 @@ const handleAddProject = async () => {
 
 <style scoped>
 .mp-background {
-  background-image: url("../assets/ap-add-bg.jpg");
+  background-image: url("../assets/admin-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -113,7 +113,6 @@ const handleAddProject = async () => {
   background-color: #1a1a1a35;
   padding: 30px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-  border-radius: 30px;
 }
 
 .mp-header {
@@ -123,7 +122,6 @@ const handleAddProject = async () => {
   color: #fff;
   font-size: 13px;
   font-family: Poppins, sans-serif;
-  font-weight: bold;
   align-items: center;
   text-align: center;
   border-bottom: 1px solid #e0e0e026;

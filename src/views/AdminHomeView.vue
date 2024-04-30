@@ -20,7 +20,6 @@ onMounted(async () => {
   <div class="adminhome-container">
     <div class="adminhome-background-div">
       <div id="home" class="opening-text">
-        <AdminNavbar />
         <h1>
           Welcome,
           <b>{{ userAccount?.session.user.user_metadata.firstName }}</b>
@@ -31,6 +30,7 @@ onMounted(async () => {
             industry.
           </p>
         </div>
+        <AdminNavbar />
       </div>
     </div>
     <!-- Overview -->
@@ -128,7 +128,7 @@ onMounted(async () => {
 }
 
 .adminhome-background-div {
-  background-image: url("/src/assets/ap-bg-2.jpg");
+  background-image: url("/src/assets/admin-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
