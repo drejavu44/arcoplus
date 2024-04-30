@@ -59,7 +59,7 @@ const handleSignup = async () => {
       </div>
       <div class="button-container">
         <button @click="handleSignup">Signup</button>
-        <RouterLink to="/login" class="login-link">Back to Login →</RouterLink>
+        <RouterLink to="/login" class="login-link"><i class="fas fa-sign-out-alt"></i> Back to Login</RouterLink>
       </div>
     </div>
   </div>

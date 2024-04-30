@@ -75,7 +75,7 @@ onMounted(async () => {
   font-size: 15px;
   font-family: Poppins, sans-serif;
   font-weight: normal;
-  margin-bottom: -2%;
+  margin-bottom: -8%;
 }
 
 .project-grid {
