@@ -35,7 +35,7 @@
             <div class="quote-form-5">
               <div class="quote-form-6">Got a project?</div>
               <div class="quote-form-7">
-                <h1>Get a quotation!</h1>
+                <h1>GET A QUOTATION!</h1>
                 <form>
                   <div class="form-group">
                     <label for="name">Name:</label>
@@ -95,7 +95,10 @@ const handleButtonClick = () => {
 <style scoped>
 /* quote form section */
 .quote-form-container {
-  background-color: rgba(240, 240, 240, 0.45);
+  background-image: url("../assets/ap-quote-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .quote-form {
@@ -107,13 +110,11 @@ const handleButtonClick = () => {
 }
 
 .quote-form-3 {
-  background-color: white;
   width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .quote-form-4 {
-  gap: 20px;
   display: flex;
 }
 
@@ -128,6 +129,7 @@ const handleButtonClick = () => {
   flex-direction: column;
   line-height: normal;
   width: 100%;
+  background-color: #fff;
 }
 
 .quote-form-5 {
@@ -216,9 +218,7 @@ button[type="submit"]:hover {
 }
 
 .quote-column-1 {
-  background-image: url("../assets/ap-9-bg.jpg");
-  background-size: cover;
-  background-position: center;
+  background-color: #1e1e1e7e;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -238,6 +238,7 @@ button[type="submit"]:hover {
   display: flex;
   align-items: center;
   font-size: 25px;
+  color: rgba(205, 171, 100, 1);
 }
 
 .contact-item h2 {
@@ -252,11 +253,11 @@ button[type="submit"]:hover {
 
 .contact-heading {
   margin: 0;
-  color: white;
+  color: #fff;
 }
 
 .contact-text span {
-  color: white;
+  color: #fff;
   font-size: 16px;
 }
 </style>

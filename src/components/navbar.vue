@@ -1,35 +1,28 @@
 <template>
   <div class="nav-container" :class="{ scrolled: isScrolled }">
     <div class="div">
-      <img src="../assets/logo.png" class="img" />
+      <img src="../assets/logo.png" class="img" @click="scrollToSection('home')" />
     </div>
     <div class="div-2">
-      <div class="nav-item" @click="scrollToSection('home')">Home</div>
-      <div class="nav-item" @click="scrollToSection('about')">About</div>
-      <div class="nav-item" @click="scrollToSection('projects')">Projects</div>
-      <div class="nav-item" @click="scrollToSection('products')">Products</div>
-      <RouterLink class="nav-item" to="/application">Application</RouterLink>
+      <div :class="{ navItem: true, active: activeSection === 'home' }" @click="scrollToSection('home')">Home</div>
+      <div :class="{ navItem: true, active: activeSection === 'about' }" @click="scrollToSection('about')">About</div>
+      <div :class="{ navItem: true, active: activeSection === 'products' }" @click="scrollToSection('products')">Products</div>
+      <div :class="{ navItem: true, active: activeSection === 'projects' }" @click="scrollToSection('projects')">Projects</div>
+      <RouterLink class="navItem" to="/application">Application</RouterLink>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed, watch } from "vue";
 import { RouterLink } from 'vue-router';
 
 const isScrolled = ref(false);
+const activeSection = ref('home');
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 0;
 };
-
-onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
 
 const scrollToSection = (sectionId) => {
   const section = document.getElementById(sectionId);
@@ -38,8 +31,31 @@ const scrollToSection = (sectionId) => {
       top: section.offsetTop,
       behavior: "smooth",
     });
+    activeSection.value = sectionId;
   }
 };
+
+watch(
+  () => window.scrollY,
+  (newVal) => {
+    const sections = ['home', 'about', 'projects', 'products'];
+    for (let i = 0; i < sections.length; i++) {
+      const section = document.getElementById(sections[i]);
+      if (section && newVal >= section.offsetTop && newVal < section.offsetTop + section.offsetHeight) {
+        activeSection.value = sections[i];
+        break;
+      }
+    }
+  }
+);
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <style scoped>
@@ -65,10 +81,9 @@ const scrollToSection = (sectionId) => {
 .div-2 {
   display: flex;
   justify-content: flex-end;
-  color: #e5e6e8;
 }
 
-.nav-item {
+.navItem {
   margin-left: 40px;
   font-family: Poppins, sans-serif;
   cursor: pointer;
@@ -77,8 +92,12 @@ const scrollToSection = (sectionId) => {
   transition: color 0.3s ease;
 }
 
-.nav-item:hover {
-  color: rgba(205, 171, 100, 1);
+.navItem.active {
+  color: rgba(205, 171, 100, 1)
+}
+
+.navItem:hover {
+  color: rgba(205, 171, 100, 1)
 }
 
 .img {

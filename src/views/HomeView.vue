@@ -3,109 +3,97 @@
     <div class="home-background-div">
       <Navbar />
       <div id="home" class="opening-text">
-        <h1>Transforming Ideas Into Structures</h1>
+        <h1>GOT A PROJECT FOR US? WE'VE GOT YOU COVERED</h1>
         <div class="content">
-          <p>Got a project for us? We’ve got you covered.</p>
-          <button @click="scrollToSection('quote')">GET A QUOTE</button>
+          <button @click="scrollToSection('quote')">
+            GET A FREE QUOTATION NOW!
+          </button>
         </div>
       </div>
     </div>
-    <!-- About Us -->
-    <div id="about" class="about-us">
-      <div class="about-us-2">
-        <div class="about-us-column">
-          <img src="../assets/ap-about-us.jpg" class="about-us-image" />
-        </div>
-        <div class="about-us-column-2">
-          <div class="about-us-3">
-            <div class="about-us-4">About</div>
-            <div class="about-us-5">
-              Creating, <br />Communicating <br />& Delivering
+    <!--Why Choose Us-->
+    <div class="about-us-wcu">
+      <div class="wcu">
+        <div class="wcu-2">
+          <div class="wcu-column">
+            <div class="wcu-3">
+              <p class="wcu-icons">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+              </p>
+              <div class="wcu-4">Expertise in Diverse Projects</div>
+              <div class="wcu-5">
+                From residential to commercial and industrial ventures, our
+                construction company specializes in a wide array of projects,
+                ensuring tailored solutions to meet every client's needs.
+              </div>
             </div>
-            <div class="about-us-6">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+          </div>
+          <div class="wcu-column-2">
+            <div class="wcu-6">
+              <p class="wcu-icons"><i class="fa-solid fa-check-to-slot"></i></p>
+              <div class="wcu-7">Sustainable Solutions</div>
+              <div class="wcu-8">
+                Committed to environmental responsibility, we integrate
+                sustainable practices into our projects, minimizing our
+                ecological footprint with eco-friendly materials and
+                energy-efficient designs.
+              </div>
             </div>
-            <a class="about-us-7"
-              ><RouterLink to="/application">APPLY NOW!</RouterLink>
-            </a>
+          </div>
+          <div class="wcu-column-3">
+            <div class="wcu-9">
+              <p class="wcu-icons"><i class="fa-solid fa-people-group"></i></p>
+              <div class="wcu-10">Experienced Team</div>
+              <div class="wcu-11">
+                Our team comprises skilled architects, engineers, project
+                managers, and laborers, bringing years of collective experience
+                to every project.
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <!--Why Choose Us-->
-  <div class="wcu-container">
-    <div class="wcu-section-header">
-      <h1>Why Choose Us?</h1>
-      <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
-      </p>
-    </div>
-    <div class="wcu">
-      <div class="wcu-2">
-        <div class="wcu-column">
-          <div class="wcu-3">
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/c34898178e2dea90e403576f1cfdf41526f3610d730034628f0f4618b0acf64d?"
-              class="img"
-            />
-            <div class="wcu-4">Expertise in Diverse Projects</div>
-            <div class="wcu-5">
-              From residential to commercial and industrial ventures, our
-              construction company specializes in a wide array of projects,
-              ensuring tailored solutions to meet every client's needs.
-            </div>
+      <!-- About Us -->
+      <div id="about">
+        <div class="about-us-2">
+          <div class="about-us-column">
+            <img src="../assets/ap-about-us.jpg" class="about-us-image" />
           </div>
-        </div>
-        <div class="wcu-column-2">
-          <div class="wcu-6">
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/e6a7bc941146df329f4d711ab2a33780f864a20ebdc0d65366ed37ce1a397be6?"
-              class="img-2"
-            />
-            <div class="wcu-7">Sustainable Solutions</div>
-            <div class="wcu-8">
-              Committed to environmental responsibility, we integrate
-              sustainable practices into our projects, minimizing our ecological
-              footprint with eco-friendly materials and energy-efficient
-              designs.
-            </div>
-          </div>
-        </div>
-        <div class="wcu-column-3">
-          <div class="wcu-9">
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/536492aff729039dc4b210f795440a3e4a312af37504541ca09729ebd58df30a?"
-              class="img-3"
-            />
-            <div class="wcu-10">
-              Experienced <br />
-              Team
-            </div>
-            <div class="wcu-11">
-              Our team comprises skilled architects, engineers, project
-              managers, and laborers, bringing years of collective experience to
-              every project.
+          <div class="about-us-column-2">
+            <div class="about-us-3">
+              <div class="about-us-4">About</div>
+              <div class="about-us-5">TRANSFORMING IDEAS INTO STRUCTURES</div>
+              <div class="about-us-6">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book.
+                <br /><br />
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. Lorem
+                Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book.
+              </div>
+              <a class="about-us-7"
+                ><RouterLink to="/application">Apply Now</RouterLink>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!--Project-->
-  <div id="projects">
-    <Project />
   </div>
   <!--Product-->
   <div id="products">
     <Product />
+  </div>
+  <!--Project-->
+  <div id="projects">
+    <Project />
   </div>
   <!--Quote Form-->
   <div id="quote">
@@ -139,11 +127,11 @@ const scrollToSection = (sectionId) => {
 }
 
 .home-background-div {
-  background-image: url("../assets/ap-bg-2.jpg");
+  background-image: url("../assets/ap-landing-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
+  height: 450px;
 }
 
 @keyframes fadeInUp {
@@ -162,11 +150,12 @@ const scrollToSection = (sectionId) => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 800px;
-  font-size: 45px;
-  color: white;
+  height: 450px;
+  font-size: 25px;
+  color: #fff;
   font-family: Poppins, sans-serif;
   text-align: center;
+  text-shadow: 1px 1px 30px rgba(44, 44, 44, 0.4);
   animation: fadeInUp 1s ease forwards;
 }
 
@@ -178,13 +167,9 @@ const scrollToSection = (sectionId) => {
   font-size: 18px;
   color: white;
   font-family: Poppins, sans-serif;
-  margin-top: -45px;
+  margin-top: -20px;
   opacity: 0;
   animation: fadeInUp 1s ease forwards;
-}
-
-.opening-text .content p {
-  margin-right: 15px;
 }
 
 .opening-text button {
@@ -194,11 +179,12 @@ const scrollToSection = (sectionId) => {
   border-style: solid;
   border-width: 1px;
   color: rgba(205, 171, 100, 1);
-  padding: 5px 20px;
+  padding: 5px 30px;
   font-size: 18px;
   font-family: Poppins, sans-serif;
   cursor: pointer;
   transition: background-color 0.5s ease;
+  box-shadow: 1px 1px 30px rgba(44, 44, 44, 0.3);
 }
 
 .opening-text button:hover {
@@ -208,9 +194,13 @@ const scrollToSection = (sectionId) => {
 
 /* About us section */
 
-.about-us {
+.about-us-wcu {
   padding: 80px;
-  background-color: rgba(240, 240, 240, 0.45);
+  height: 800px;
+  background-image: url("../assets/ap-abt-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .about-us-2 {
@@ -222,7 +212,7 @@ const scrollToSection = (sectionId) => {
   display: flex;
   flex-direction: column;
   line-height: normal;
-  width: 50%;
+  width: 60%;
   margin-left: 0px;
 }
 
@@ -231,15 +221,18 @@ const scrollToSection = (sectionId) => {
   object-fit: auto;
   object-position: center;
   width: 80%;
+  min-height: 100%;
   align-self: stretch;
   margin: auto 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .about-us-column-2 {
   display: flex;
   flex-direction: column;
   line-height: normal;
-  width: 50%;
+  width: 80%;
+  min-height: 100%;
   margin-left: 20px;
 }
 
@@ -264,14 +257,17 @@ const scrollToSection = (sectionId) => {
 .about-us-5 {
   color: #1e1e1e;
   margin-top: 37px;
-  font: 700 56px/64px Poppins, sans-serif;
+  font-size: 56px;
+  font-weight: bold;
+  font-family: Poppins, sans-serif;
+  text-shadow: 1px 1px 50px rgba(0, 0, 0, 0.3);
 }
 
 .about-us-6 {
   font-family: Poppins, sans-serif;
   line-height: 32px;
   margin-top: 35px;
-  color: #8f8f8f;
+  color: #9d9d9d;
 }
 
 .about-us-7 {
@@ -301,36 +297,14 @@ const scrollToSection = (sectionId) => {
 
 /*Why Choose Us?*/
 
-.wcu-section-header {
-  padding: 35px;
-  display: flex;
-  flex-direction: column;
-  color: #1e1e1e;
-  font-size: 13px;
-  font-family: Poppins, sans-serif;
-  font-weight: bold;
-  align-items: center;
-}
-
-.wcu-section-header h1 {
-  border-bottom: 8px solid rgba(205, 171, 100, 1);
-}
-
-.wcu-section-header p {
-  color: #8f8f8f;
-  font-size: 15px;
-  font-family: Poppins, sans-serif;
-  font-weight: normal;
-}
-
 .wcu {
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 auto;
   margin-bottom: 50px;
-  padding: 5px;
 }
 
 .wcu-2 {
+  margin-top: -150px;
   gap: 40px;
   display: flex;
   justify-content: center;
@@ -345,45 +319,44 @@ const scrollToSection = (sectionId) => {
   line-height: normal;
   width: 50%;
   margin-left: 0px;
-  height: 300px; 
+  height: 300px;
 }
 
 .wcu-3,
 .wcu-6,
 .wcu-9 {
-  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-grow: 1;
   flex-direction: column;
   padding: 56px 11px 34px;
-  max-height: 100%; 
-  overflow: hidden; 
+  max-height: 100%;
+  overflow: hidden;
+  background-color: #fff;
 }
 
-.img,
-.img-2,
-.img-3 {
-  aspect-ratio: 1.04;
-  object-fit: auto;
-  object-position: center;
-  width: 49px;
+.wcu-icons {
+  margin: 0;
+  font-size: 40px;
   align-self: center;
+  color: #1e1e1e;
 }
 
 .wcu-4,
 .wcu-7,
 .wcu-10 {
-  color: #1e1e1e;
+  color: rgba(205, 171, 100, 1);
   margin-top: 31px;
-  font: 500 20px/100% Poppins, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: Poppins, sans-serif;
   text-align: center;
 }
 
 .wcu-5,
 .wcu-8,
 .wcu-11 {
-  color: #949494;
+  color: #9d9d9d;
   text-align: center;
   margin-top: 23px;
   font: 400 12px/19px Poppins, sans-serif;
@@ -405,7 +378,7 @@ const scrollToSection = (sectionId) => {
   .wcu-5,
   .wcu-8,
   .wcu-11 {
-    overflow: auto; 
+    overflow: auto;
   }
 }
 </style>
