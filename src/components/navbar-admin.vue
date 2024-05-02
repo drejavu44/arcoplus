@@ -27,17 +27,18 @@
       <i class="fas fa-project-diagram"></i> Projects
     </RouterLink>
     |
-    <RouterLink
-      to="/login"
+    <button
+      @click="logOutUser"
       class="nav-item"
     >
       <i class="fas fa-sign-out-alt"></i> Sign Out
-    </RouterLink>
+  </button>
   </div>
 </template>
 
 <script setup>
 import { RouterLink } from "vue-router";
+import { logOutUser } from "@/supabase/supabase";
 </script>
 
 <style scoped>

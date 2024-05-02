@@ -1,11 +1,21 @@
 import { createClient } from "@supabase/supabase-js";
 import { v4 as uuidv4 } from "uuid";
+import router from "@/router";
 
 // Create a single supabase client for interacting with your database
 const supabase = createClient(
   "https://mcjjkqjdijgxngdbsomz.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jamprcWpkaWpneG5nZGJzb216Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI3MTc1NjksImV4cCI6MjAyODI5MzU2OX0.IaUrbyejMvkbX_t2tpyQNssWpLM_Y4AkSDIc8aQQZgc"
 );
+
+const logOutUser = async () => {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    alert(error);
+  }
+  router.push("/");
+};
 
 const createUserAccount = async (newUser) => {
   const { data, error } = await supabase.auth.signUp({
@@ -21,11 +31,11 @@ const createUserAccount = async (newUser) => {
     : { status: 1, data };
 };
 
-const getUserSession = async() => {
-  const {data} = await supabase.auth.getSession()
+const getUserSession = async () => {
+  const { data } = await supabase.auth.getSession();
 
-  return data
-}
+  return data;
+};
 
 const loginUser = async (email, password) => {
   const { data, error } = await supabase.auth.signInWithPassword({
@@ -241,5 +251,6 @@ export {
   getProjects,
   deleteProject,
   updateProject,
-  getUserSession
+  getUserSession,
+  logOutUser
 };
