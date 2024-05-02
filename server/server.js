@@ -21,14 +21,14 @@ app.get("/", (req, res) => {
 });
 
 app.post("/send-email", (req, res) => {
-  const { to, subject, text } = req.body;
+  const { to, subject, text, name, phone, message } = req.body;
 
   const mailOptions = {
     from: "arcoplusph@gmail.com",
     to,
     subject,
     text,
-    html:`<p><b>This is to test the html field in mail options.</b></p>`
+    html:`<p><b>This is to test the html field in mail options. Here are the values:\n name: ${name}, phone: ${phone}, message: ${message}, email: ${to}</b></p>`
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
