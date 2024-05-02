@@ -89,8 +89,11 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
   </div>
 </div>
+=======
+>>>>>>> 9ac7bb50ba28a1c32ffb4c2cff8ba0989b05a81f
 
 <!--Project-->
 <div id="projects">
