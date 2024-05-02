@@ -25,12 +25,12 @@
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required />
                   </div>
-                  <div class="form-group">
+                  <div class="form-group form-group-inline">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required />
                   </div>
-                  <div class="form-group">
-                    <label for="phone">Phone:</label>
+                  <div class="form-group form-group-inline">
+                    <label class="p-label" for="phone">Phone:</label>
                     <input type="tel" id="phone" name="phone" required />
                   </div>
                   <div class="form-group">
@@ -269,7 +269,7 @@ form {
 
 input {
   width: 100%;
-  max-width: 100%;
+  max-width: 110%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -308,4 +308,25 @@ input[type="file"]::-webkit-file-upload-button {
   cursor: pointer;
   background-color: transparent;
 }
+
+.form-group-inline {
+  display: inline-block;
+  width: 48%;
+  margin-right: 2%;
+}
+
+.form-group-inline:last-child {
+  margin-right: 0;
+}
+
+.form-group-inline input[type="tel"] {
+  margin-left: 27px;
+}
+
+.form-group-inline input[type="email"] {
+  width: 105%;
+}
+.p-label {
+    margin-left: 25px;
+  }
 </style>

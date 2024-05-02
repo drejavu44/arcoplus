@@ -1,60 +1,63 @@
 <template>
-  <div class="home-container">
-    <div class="home-background-div">
-      <Navbar />
-      <div id="home" class="opening-text">
-        <h1>GOT A PROJECT FOR US? WE'VE GOT YOU COVERED</h1>
-        <div class="content">
-          <button @click="scrollToSection('quote')">
-            GET A FREE QUOTATION NOW!
-          </button>
+  <div class="container">
+    <div class="home-container">
+      <div class="home-background-div">
+        <Navbar />
+        <div id="home" class="opening-text">
+          <h1>GOT A PROJECT FOR US? WE'VE GOT YOU COVERED</h1>
+          <div class="content">
+            <button @click="scrollToSection('quote')">GET A FREE QUOTATION NOW!</button>
+          </div>
+        </div>
+      </div>
+      <!--Why Choose Us-->
+      <div class="about-us-wcu">
+        <div class="wcu">
+          <div class="wcu-2">
+            <div class="wcu-column">
+              <div class="wcu-3">
+                <p class="wcu-icons">
+                  <i class="fa-solid fa-screwdriver-wrench"></i>
+                </p>
+                <div class="wcu-4">Expertise in Diverse Projects</div>
+                <div class="wcu-5">
+                  From residential to commercial and industrial ventures, our
+                  construction company specializes in a wide array of projects,
+                  ensuring tailored solutions to meet every client's needs.
+                </div>
+              </div>
+            </div>
+            <div class="wcu-column-2">
+              <div class="wcu-6">
+                <p class="wcu-icons"><i class="fa-solid fa-check-to-slot"></i></p>
+                <div class="wcu-7">Sustainable Solutions</div>
+                <div class="wcu-8">
+                  Committed to environmental responsibility, we integrate
+                  sustainable practices into our projects, minimizing our
+                  ecological footprint with eco-friendly materials and
+                  energy-efficient designs.
+                </div>
+              </div>
+            </div>
+            <div class="wcu-column-3">
+              <div class="wcu-9">
+                <p class="wcu-icons"><i class="fa-solid fa-people-group"></i></p>
+                <div class="wcu-10">Experienced Team</div>
+                <div class="wcu-11">
+                  Our team comprises skilled architects, engineers, project
+                  managers, and laborers, bringing years of collective experience
+                  to every project.
+                </div>
+                
+              </div>
+              
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!--Why Choose Us-->
-    <div class="about-us-wcu">
-      <div class="wcu">
-        <div class="wcu-2">
-          <div class="wcu-column">
-            <div class="wcu-3">
-              <p class="wcu-icons">
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-              </p>
-              <div class="wcu-4">Expertise in Diverse Projects</div>
-              <div class="wcu-5">
-                From residential to commercial and industrial ventures, our
-                construction company specializes in a wide array of projects,
-                ensuring tailored solutions to meet every client's needs.
-              </div>
-            </div>
-          </div>
-          <div class="wcu-column-2">
-            <div class="wcu-6">
-              <p class="wcu-icons"><i class="fa-solid fa-check-to-slot"></i></p>
-              <div class="wcu-7">Sustainable Solutions</div>
-              <div class="wcu-8">
-                Committed to environmental responsibility, we integrate
-                sustainable practices into our projects, minimizing our
-                ecological footprint with eco-friendly materials and
-                energy-efficient designs.
-              </div>
-            </div>
-          </div>
-          <div class="wcu-column-3">
-            <div class="wcu-9">
-              <p class="wcu-icons"><i class="fa-solid fa-people-group"></i></p>
-              <div class="wcu-10">Experienced Team</div>
-              <div class="wcu-11">
-                Our team comprises skilled architects, engineers, project
-                managers, and laborers, bringing years of collective experience
-                to every project.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- About Us -->
-      <div id="about">
+        <!-- About Us -->
+        <div id="about">
         <div class="about-us-2">
           <div class="about-us-column">
             <img src="../assets/ap-about-us.jpg" class="about-us-image" />
@@ -78,17 +81,19 @@
                 text ever since the 1500s, when an unknown printer took a galley
                 of type and scrambled it to make a type specimen book.
               </div>
-              <a class="about-us-7"
-                ><RouterLink to="/application">Apply Now</RouterLink>
-              </a>
-            </div>
+              <div class="about-us-7">
+                <div @click="scrollToSection('projects')">
+                  See some of our recent projects
+                </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!--Project-->
-  <div id="projects">
+</div>
+
+<!--Project-->
+<div id="projects">
     <Project />
   </div>
   <!--Product-->
@@ -122,8 +127,22 @@ const scrollToSection = (sectionId) => {
 </script>
 
 <style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
 .home-container {
-  margin: 0; /* Adjust margin */
+  flex: 1;
+}
+
+.about-us-wcu {
+  padding: 80px;
+  margin-bottom: 50px;
+}
+
+#projects {
+  flex: 1;
 }
 
 .home-background-div {
@@ -192,17 +211,19 @@ const scrollToSection = (sectionId) => {
   color: white;
 }
 
-/* About us section */
+/* about us section */
 
 .about-us-wcu {
-  padding: 80px;
-  height: 800px;
+  padding: 150px;
+  margin-top: -150px;
   margin-bottom: 50px;
 }
 
 .about-us-2 {
   gap: 5px;
   display: flex;
+  margin-top: -200px;
+  padding: 80px;
 }
 
 .about-us-column {
@@ -271,37 +292,30 @@ const scrollToSection = (sectionId) => {
   margin-top: 45px;
 }
 
-.about-us-7 a {
-  background-color: transparent;
-  border-radius: 30px;
-  border-color: rgba(205, 171, 100, 1);
-  border-style: solid;
-  border-width: 1px;
-  align-self: start;
+.about-us-7 div {
   color: rgba(205, 171, 100, 1);
   justify-content: center;
-  padding: 10px 30px;
-  font: 12px/267% Poppins, sans-serif;
+  font-size: 12px;
+  font-family: Poppins, sans-serif;
   cursor: pointer;
-  transition: background-color 0.5s ease;
-  text-decoration: none;
+  transition: color 0.5s ease;
+  text-decoration: underline;
 }
 
-.about-us-7 a:hover {
-  background-color: rgba(205, 171, 100, 1);
-  color: white;
+.about-us-7 div:hover {
+  color: rgb(153, 128, 73);
 }
 
-/*Why Choose Us?*/
+
+/* wcu section */
 
 .wcu {
   max-width: 100%;
   margin: 0 auto;
-  margin-bottom: 50px;
+  margin-top: -25px;
 }
 
 .wcu-2 {
-  margin-top: -150px;
   gap: 40px;
   display: flex;
   justify-content: center;
@@ -379,3 +393,4 @@ const scrollToSection = (sectionId) => {
   }
 }
 </style>
+
