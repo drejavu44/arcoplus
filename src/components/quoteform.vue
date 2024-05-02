@@ -36,17 +36,17 @@
               <div class="quote-form-6">Got a project?</div>
               <div class="quote-form-7">
                 <h1>GET A QUOTATION!</h1>
+                <div class="form-group">
+                  <label for="name">Name:</label>
+                  <input type="text" id="name" name="name" required />
+                </div>
                 <form>
-                  <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required />
-                  </div>
-                  <div class="form-group">
+                  <div class="form-group form-group-inline">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required />
                   </div>
-                  <div class="form-group">
-                    <label for="phone">Phone:</label>
+                  <div class="form-group form-group-inline">
+                    <label class="p-label" for="phone">Phone:</label>
                     <input type="tel" id="phone" name="phone" required />
                   </div>
                   <div class="form-group">
@@ -95,7 +95,7 @@ const handleButtonClick = () => {
 <style scoped>
 /* quote form section */
 .quote-form-container {
- background-color: #fafafa;
+  background-color: #fafafa;
 }
 
 .quote-form {
@@ -260,4 +260,25 @@ button[type="submit"]:hover {
   color: #fff;
   font-size: 16px;
 }
+
+.form-group-inline {
+  display: inline-block;
+  width: 48%;
+  margin-right: 2%;
+}
+
+.form-group-inline:last-child {
+  margin-right: 0;
+}
+
+.form-group-inline input[type="tel"] {
+  margin-left: 20px;
+}
+
+.form-group-inline input[type="email"] {
+  width: 105%;
+}
+.p-label {
+    margin-left: 25px;
+  }
 </style>
