@@ -13,6 +13,7 @@ const logOutUser = async () => {
 
   if (error) {
     alert(error);
+    return
   }
   router.push("/");
 };
