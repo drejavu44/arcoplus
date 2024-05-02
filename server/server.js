@@ -28,7 +28,19 @@ app.post("/send-email", (req, res) => {
     to,
     subject,
     text,
-    html:`<p><b>This is to test the html field in mail options. Here are the values:\n name: ${name}, phone: ${phone}, message: ${message}, email: ${to}</b></p>`
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px;">
+        <p style="font-size: 16px;"><b>Hello ${name},</b></p>
+        <p style="font-size: 16px;">We wanted to inform you that we've received your request and now have your information ready:</p>
+        <ul>
+          <li style="font-size: 16px;"><b>Name:</b> ${name}</li>
+          <li style="font-size: 16px;"><b>Phone:</b> ${phone}</li>
+          <li style="font-size: 16px;"><b>Message:</b> ${message}</li>
+          <li style="font-size: 16px;"><b>Email:</b> ${to}</li>
+        </ul>
+        <p style="font-size: 16px;">Please wait for us as we will contact you shortly.</p>
+      </div>
+    `
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

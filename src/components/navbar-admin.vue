@@ -29,7 +29,7 @@
     |
     <button
       @click="logOutUser"
-      class="nav-item"
+      class="logout-button"
     >
       <i class="fas fa-sign-out-alt"></i> Sign Out
   </button>
@@ -62,6 +62,22 @@ import { logOutUser } from "@/supabase/supabase";
 }
 
 .nav-item.active {
+  color: rgba(205, 171, 100, 1);
+}
+
+.logout-button{
+  padding: 10px 20px;
+  font-size: 17px;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  margin: 0 10px;
+  font-family: Poppins, sans-serif;
+}
+
+.logout-button:hover {
   color: rgba(205, 171, 100, 1);
 }
 </style>
