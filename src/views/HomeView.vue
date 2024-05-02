@@ -81,14 +81,16 @@
                 text ever since the 1500s, when an unknown printer took a galley
                 of type and scrambled it to make a type specimen book.
               </div>
-              <a class="about-us-7"
-                ><RouterLink to="/application">Apply Now</RouterLink>
-              </a>
-            </div>
+              <div class="about-us-7">
+                <div @click="scrollToSection('projects')">
+                  See some of our recent projects
+                </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
 <!--Project-->
 <div id="projects">
@@ -290,25 +292,18 @@ const scrollToSection = (sectionId) => {
   margin-top: 45px;
 }
 
-.about-us-7 a {
-  background-color: transparent;
-  border-radius: 30px;
-  border-color: rgba(205, 171, 100, 1);
-  border-style: solid;
-  border-width: 1px;
-  align-self: start;
+.about-us-7 div {
   color: rgba(205, 171, 100, 1);
   justify-content: center;
-  padding: 10px 30px;
-  font: 12px/267% Poppins, sans-serif;
+  font-size: 12px;
+  font-family: Poppins, sans-serif;
   cursor: pointer;
-  transition: background-color 0.5s ease;
-  text-decoration: none;
+  transition: color 0.5s ease;
+  text-decoration: underline;
 }
 
-.about-us-7 a:hover {
-  background-color: rgba(205, 171, 100, 1);
-  color: white;
+.about-us-7 div:hover {
+  color: rgb(153, 128, 73);
 }
 
 
