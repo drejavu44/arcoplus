@@ -1,9 +1,51 @@
+<template>
+  <!-- Products Section -->
+  <div class="prod-container">
+    <div class="prod-section-header">
+      <h1>Products</h1>
+      <p>
+        Explore our wide range of construction solutions designed to meet your
+        needs.
+      </p>
+    </div>
+  
+    <transition name="fade" mode="out-in">
+      <div class="photo-container" :key="currentPage">
+        <div class="photo-column" v-for="(product, index) in paginatedProducts" :key="index">
+          <div class="image-wrapper">
+            <img :src="product.imageUrl" class="product-image" />
+            <div class="image-overlay">
+              <p class="overlay-text">{{ product.name }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    <div class="pagination">
+      <button @click="previousPage" :disabled="currentPage === 1"><i class="fa-solid fa-arrow-left"></i></button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button @click="nextPage" :disabled="currentPage === totalPages"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  </div>
+</template>
+
 <script setup>
 import { getProducts } from '../supabase/supabase.js'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 
 const isLoading = ref(false)
-const products = ref()
+const products = ref([])
+const itemsPerPage = 4 // Display only four products per page
+const currentPage = ref(1)
+
+const totalPages = computed(() => Math.ceil(products.value.length / itemsPerPage))
+
+const paginatedProducts = computed(() => {
+  const startIndex = (currentPage.value - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  return products.value.slice(startIndex, endIndex)
+})
 
 const handleGetProducts = async () => {
   isLoading.value = true
@@ -15,33 +57,18 @@ onMounted(async () => {
   await handleGetProducts()
 })
 
+const previousPage = () => {
+  if (currentPage.value > 1) {
+    currentPage.value--
+  }
+}
+
+const nextPage = () => {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value++
+  }
+}
 </script>
-
-<template>
-  <!-- Projects Section -->
-  <div class="prod-container">
-    <div class="prod-section-header">
-      <h1>Products</h1>
-      <p>
-        Explore our wide range of construction solutions designed to meet your
-        needs.
-      </p>
-    </div>
-  
-    <div class="photo-container">
-      <div class="photo-column" v-for="product in products">
-        <div class="image-wrapper">
-          <img :src="product.imageUrl" class="product-image" />
-          <div class="image-overlay">
-            <p class="overlay-text">{{ product.name }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  
-</template>
 
 <style scoped>
 /* Products section */
@@ -79,6 +106,7 @@ onMounted(async () => {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 3%;
+  transition: opacity 0.5s ease; /* Add transition effect */
 }
 
 .photo-column {
@@ -132,5 +160,43 @@ onMounted(async () => {
 
 .image-wrapper:hover .image-overlay {
   opacity: 1;
+}
+
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-family: Poppins, sans-serif;
+  font-size: 12px;
+  color: #8f8f8f;
+}
+
+.pagination button {
+  margin: 0 10px;
+  padding: 5px 10px;
+  background-color: #eee;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.pagination button:hover {
+  background-color: #ddd;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
