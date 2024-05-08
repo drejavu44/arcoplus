@@ -1,7 +1,7 @@
 <template>
   <div class="nav-container" :class="{ scrolled: isScrolled }">
     <div class="div">
-      <img src="../assets/logo.png" class="img" />
+      <img src="../assets/logo2.png" class="img" />
     </div>
     <div class="div-2">
       <RouterLink class="nav-item" to="/">Home</RouterLink>
@@ -79,7 +79,7 @@ const scrollToSection = (sectionId) => {
   font-family: Poppins, sans-serif;
   cursor: pointer;
   text-decoration: none;
-  color: white;
+  color: #1e1e1e;
   transition: color 0.3s ease;
 }
 
@@ -94,7 +94,7 @@ const scrollToSection = (sectionId) => {
 }
 
 .nav-container.scrolled {
-  background-color: #1e1e1e;
+  background-color: #ffffffd4;
   padding: 5px 20px;
 }
 

@@ -17,6 +17,7 @@
   justify-content: space-between;
   align-items: center;
   font-family: Poppins, sans-serif;
+  border-top: 5px solid rgba(205, 171, 100, 1);
  
 }
 
