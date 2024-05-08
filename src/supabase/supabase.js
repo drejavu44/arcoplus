@@ -137,6 +137,12 @@ const getProjects = async () => {
   return data;
 };
 
+const getQuotations = async () => {
+  const {data} = await supabase.from("quotations").select();
+
+  return data;
+}
+
 const deleteProduct = async (product) => {
   const imageStorageDeletion = await deleteImage(product.imagePath);
   if (!imageStorageDeletion) {
@@ -241,6 +247,9 @@ const updateProject = async (updatedProject) => {
       };
 };
 
+
+
+
 export {
   createUserAccount,
   loginUser,
@@ -253,5 +262,6 @@ export {
   deleteProject,
   updateProject,
   getUserSession,
-  logOutUser
+  logOutUser,
+  getQuotations
 };
