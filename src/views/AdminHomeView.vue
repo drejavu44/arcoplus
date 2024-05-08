@@ -69,8 +69,7 @@ onMounted(async () => {
               <th>Email</th>
               <th>Phone</th>
               <th>Job Position</th>
-              <th>Resume</th>
-              <th>Action</th>
+              <th>Resume</th>  
             </tr>
           </thead>
           <tbody>
@@ -80,10 +79,7 @@ onMounted(async () => {
               <td>cdcutie@gmail.com</td>
               <td>143-143-143</td>
               <td>Installer</td>
-              <td><a href="path_to_resume">Download Resume</a></td>
-              <td>
-                <button class="jaq-button"><i class="fa fa-envelope"></i> Send Email</button>
-              </td>
+              <td><a href="path_to_resume">Download Resume</a></td>           
             </tr>
           </tbody>
         </table>
@@ -95,8 +91,7 @@ onMounted(async () => {
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
-              <th>Message</th>
-              <th>Action</th>
+              <th>Message</th>      
             </tr>
           </thead>
           <tbody>
@@ -110,9 +105,6 @@ onMounted(async () => {
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s, when an unknown printer took a galley
                 of type and scrambled it to make a type specimen book.
-              </td>
-              <td>
-                <button class="jaq-button"><i class="fa fa-envelope"></i> Send Email</button>
               </td>
             </tr>
           </tbody>
