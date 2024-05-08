@@ -1,83 +1,39 @@
-<template>
-  <div class="about-container">
-    <div class="about-background-div">
-      <Navbar />
-      <div class="opening-text">
-        <h1>WORK WITH US</h1>
-        <p>Join our dynamic team and be part of something extraordinary.</p>
-      </div>
-    </div>
-  </div>
-  <!--Work With Us-->
-  <div class="wwu-container">
-    <div class="wwu-section-header">
-      <h1>Application Form</h1>
-      <p>Fill in the necessary information to submit your application. We will get back to you once it has been checked.</p>
-    </div>
-    <div class="wwu">
-      <div class="wwu-3">
-        <div class="wwu-4">
-          <div class="wwu-column-2">
-            <div class="wwu-5">
-              <div class="wwu-7">
-                <form>
-                  <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required />
-                  </div>
-                  <div class="form-group form-group-inline">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required />
-                  </div>
-                  <div class="form-group form-group-inline">
-                    <label class="p-label" for="phone">Phone:</label>
-                    <input type="tel" id="phone" name="phone" required />
-                  </div>
-                  <div class="form-group">
-                    <label for="jobPosition">Job Position:</label>
-                    <select id="jobPosition" name="jobPosition" required>
-                      <option value="" disabled selected>
-                        Select a job position
-                      </option>
-                      <option value="1">Engineer</option>
-                      <option value="2">AutoCAD Operator</option>
-                      <option value="3">Installer/Fabricator</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="phone">Resume:</label>
-                    <input type="file" id="resume" name="resume" required />
-                  </div>
-                  <button type="submit" @click="handleButtonClick">
-                    Submit
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <Footer />
-</template>
-
 <script setup>
 import Navbar from "../components/navbar-application.vue";
 import Footer from "../components/footer.vue";
 import { ref } from "vue";
+import Loader from "@/Loader/Loader.vue";
 import Swal from "sweetalert2";
+import { addApplication } from "@/supabase/supabase";
 
+const isLoading = ref(false)
 const formData = ref({
   name: "",
   email: "",
   phone: "",
-  jobposition: "",
+  jobPosition: "",
   resume: "",
 });
 
-const handleButtonClick = () => {
-  // Handle form submission logic here
+const handleButtonClick = async () => {
+  isLoading.value = true
+  if (!formData.value.name || !formData.value.email || !formData.value.phone || !formData.value.jobPosition || !formData.value.resume) {
+    alert("All fields are required.");
+    isLoading.value = false
+    return
+  }
+
+  const response = await addApplication(formData.value);
+
+  if (response.status === 0) {
+    Swal.fire({
+      icon: "error",
+      title: "Unable to submit application.",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    return
+  }
 
   Swal.fire({
     icon: "success",
@@ -85,8 +41,90 @@ const handleButtonClick = () => {
     showConfirmButton: false,
     timer: 1500,
   });
+  formData.value = {
+    name: "",
+    email: "",
+    phone: "",
+    jobPosition: "",
+    resume: "",
+  }
+  isLoading.value = false;
 };
+
+const handleFileInputChange = (event) => {
+  const file = event.target.files[0];
+  formData.value.resume = file;
+};
+
 </script>
+<template>
+  <Loader v-if="isLoading" />
+  <div v-else>
+    <div class="about-container">
+      <div class="about-background-div">
+        <Navbar />
+        <div class="opening-text">
+          <h1>WORK WITH US</h1>
+          <p>Join our dynamic team and be part of something extraordinary.</p>
+        </div>
+      </div>
+    </div>
+    <!--Work With Us-->
+    <div class="wwu-container">
+      <div class="wwu-section-header">
+        <h1>Application Form</h1>
+        <p>Fill in the necessary information to submit your application. We will get back to you once it has been
+          checked.
+        </p>
+      </div>
+      <div class="wwu">
+        <div class="wwu-3">
+          <div class="wwu-4">
+            <div class="wwu-column-2">
+              <div class="wwu-5">
+                <div class="wwu-7">
+                  <div class="form-mismo">
+                    <div class="form-group">
+                      <label for="name">Name:</label>
+                      <input v-model="formData.name" type="text" id="name" name="name" required />
+                    </div>
+                    <div class="form-group form-group-inline">
+                      <label for="email">Email:</label>
+                      <input v-model="formData.email" type="email" id="email" name="email" required />
+                    </div>
+                    <div class="form-group form-group-inline">
+                      <label class="p-label" for="phone">Phone:</label>
+                      <input v-model="formData.phone" type="tel" id="phone" name="phone" required />
+                    </div>
+                    <div class="form-group">
+                      <label for="jobPosition">Job Position:</label>
+                      <select v-model="formData.jobPosition" id="jobPosition" name="jobPosition" required>
+                        <option value="" disabled selected>
+                          Select a job position
+                        </option>
+                        <option value="1">Engineer</option>
+                        <option value="2">AutoCAD Operator</option>
+                        <option value="3">Installer/Fabricator</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="phone">Resume:</label>
+                      <input @change="handleFileInputChange" type="file" id="resume" name="resume" required />
+                    </div>
+                    <button @click="handleButtonClick">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <Footer />
+  </div>
+</template>
 
 <style scoped>
 .about-container {
@@ -99,7 +137,8 @@ const handleButtonClick = () => {
   background-position: center;
   background-repeat: no-repeat;
   height: 450px;
-  max-width: 100%; /* Set maximum width */
+  max-width: 100%;
+  /* Set maximum width */
 }
 
 @keyframes fadeInUp {
@@ -107,6 +146,7 @@ const handleButtonClick = () => {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -232,7 +272,7 @@ const handleButtonClick = () => {
   margin-bottom: 20px;
 }
 
-form {
+.form-mismo {
   max-width: 100%;
   margin-top: 75px;
 }
@@ -253,9 +293,12 @@ form {
   border-radius: 5px;
   font-family: Poppins, sans-serif;
   box-sizing: border-box;
-  -webkit-appearance: none; /* Removes default arrow on Chrome/Safari */
-  -moz-appearance: none; /* Removes default arrow on Firefox */
-  appearance: none; /* Removes default arrow on other browsers */
+  -webkit-appearance: none;
+  /* Removes default arrow on Chrome/Safari */
+  -moz-appearance: none;
+  /* Removes default arrow on Firefox */
+  appearance: none;
+  /* Removes default arrow on other browsers */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%231e1e1e'%3E%3Cpath d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 10px top 50%;
@@ -263,7 +306,8 @@ form {
 }
 
 .form-group :focus {
-  border-color: rgba(205, 171, 100, 1); /*Apply to other forms*/
+  border-color: rgba(205, 171, 100, 1);
+  /*Apply to other forms*/
   outline: none;
 }
 
@@ -278,7 +322,7 @@ input {
   font-size: 14px;
 }
 
-button[type="submit"] {
+button {
   background-color: transparent;
   border-radius: 30px;
   border-color: rgba(205, 171, 100, 1);
@@ -293,7 +337,7 @@ button[type="submit"] {
   padding: 10px 20px;
 }
 
-button[type="submit"]:hover {
+button:hover {
   background-color: rgba(205, 171, 100, 1);
   color: white;
 }
@@ -326,7 +370,8 @@ input[type="file"]::-webkit-file-upload-button {
 .form-group-inline input[type="email"] {
   width: 105%;
 }
+
 .p-label {
-    margin-left: 25px;
-  }
+  margin-left: 25px;
+}
 </style>

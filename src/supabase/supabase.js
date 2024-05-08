@@ -69,6 +69,25 @@ const uploadImage = async (imageFile) => {
   return { imageUrl, path };
 };
 
+const uploadPDF = async (pdfFile) => {
+  const file = pdfFile;
+  const uuid = uuidv4();
+  const fileName = `${uuid}_${file.name}`;
+  let pdfUrl = "";
+
+  const { data, error } = await supabase.storage
+    .from("products")
+    .upload(fileName, file);
+
+  if (!error) {
+    pdfUrl = `https://mcjjkqjdijgxngdbsomz.supabase.co/storage/v1/object/public/${data.fullPath}`;
+  }
+
+  const path = data.path;
+
+  return { pdfUrl, path };
+};
+
 const deleteImage = async (filePath) => {
   const { error } = await supabase.storage.from("products").remove(filePath);
   console.log(error);
@@ -126,6 +145,52 @@ const addProject = async (newProject) => {
   return result;
 };
 
+const addApplication = async (newApplication) => {
+  let result = {};
+  const { pdfUrl, path } = await uploadPDF(newApplication.resume);
+
+  if (!pdfUrl) {
+    result = { status: 0, errorMessage: "unable to upload image file." };
+    return result;
+  }
+
+  const { data, error } = await supabase
+    .from("applications")
+    .insert({
+      name: newApplication.name,
+      email: newApplication.email,
+      resumeUrl: pdfUrl,
+      resumePath: path,
+      phone: newApplication.phone,
+      jobPosition: newApplication.jobPosition,
+    })
+    .select();
+
+  if (!error) {
+    axios
+      .post(
+        "http://localhost:3000/application/send-email",
+        { ...newApplication, resumeUrl: pdfUrl },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log("Email sent successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
+      });
+  }
+  error
+    ? (result = { status: 0, errorMessage: error.message })
+    : (result = { status: 1, data });
+
+  return result;
+};
+
 const addQuotation = async (newQuotation) => {
   let result = {};
 
@@ -140,8 +205,8 @@ const addQuotation = async (newQuotation) => {
     axios
       .post("http://localhost:3000/send-email", newQuotation, {
         headers: {
-          'Content-Type': 'application/json'
-        }
+          "Content-Type": "application/json",
+        },
       })
       .then((response) => {
         console.log("Email sent successfully:", response.data);
@@ -172,6 +237,12 @@ const getProjects = async () => {
 
 const getQuotations = async () => {
   const { data } = await supabase.from("quotations").select();
+
+  return data;
+};
+
+const getApplications = async () => {
+  const { data } = await supabase.from("applications").select();
 
   return data;
 };
@@ -295,4 +366,6 @@ export {
   logOutUser,
   getQuotations,
   addQuotation,
+  addApplication,
+  getApplications,
 };

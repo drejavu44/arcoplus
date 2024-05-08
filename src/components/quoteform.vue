@@ -18,7 +18,7 @@ const formData = ref({
 });
 
 const handleButtonClick = async () => {
-  if(!formData.name || !formData.email || !formData.phone || !formData.message){
+  if(!formData.value.name || !formData.value.email || !formData.value.phone || !formData.value.message){
     alert("All fields are required.");
     return
   }

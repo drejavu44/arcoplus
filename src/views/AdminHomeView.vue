@@ -1,13 +1,14 @@
 <script setup>
 import AdminNavbar from "../components/navbar-admin.vue";
 import { ref, onMounted } from "vue";
-import { getUserSession, getQuotations } from "@/supabase/supabase";
+import { getUserSession, getQuotations, getApplications } from "@/supabase/supabase";
 import Loader from "@/Loader/Loader.vue";
 
 const activeTab = ref("jobApplications");
 
 const userAccount = ref();
 const quotations = ref();
+const applications = ref()
 const isLoading = ref(false)
 
 const getUserAccount = async () => {
@@ -19,13 +20,18 @@ const handleGetQuotations = async () => {
   quotations.value = await getQuotations();
 };
 
+const handleGetApplications = async () => {
+  applications.value = await getApplications()
+}
+
 onMounted(() => {
   getUserAccount();
   handleGetQuotations();
+  handleGetApplications()
 });
 </script>
 
-<template>  
+<template>
   <div class="adminhome-container">
     <div class="adminhome-background-div">
       <div id="home" class="opening-text">
@@ -77,12 +83,12 @@ onMounted(() => {
           </thead>
           <tbody>
             <!-- Job Applications -->
-            <tr>
-              <td>Cardo Dalisay</td>
-              <td>cdcutie@gmail.com</td>
-              <td>143-143-143</td>
-              <td>Installer</td>
-              <td><a href="path_to_resume">Download Resume</a></td>
+            <tr v-for="application in applications">
+              <td>{{ application.name }}</td>
+              <td>{{ application.email }}</td>
+              <td>{{ application.phone }}</td>
+              <td>{{ application.jobPosition }}</td>
+              <td><a :href="application.resumeUrl">Download Resume</a></td>
             </tr>
           </tbody>
         </table>

@@ -53,6 +53,40 @@ app.post("/send-email", (req, res) => {
   });
 });
 
+app.post("/application/send-email", (req, res) => {
+  const { email, name, phone, jobPosition, resumeUrl } = req.body;
+
+  const mailOptions = {
+    from: "arcoplusph@gmail.com",
+    to : email,
+    subject: "New Application Received",
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px;">
+        <p style="font-size: 16px;"><b>Hello ${name},</b></p>
+        <p style="font-size: 16px;">We wanted to inform you that we've received your request and now have your information ready:</p>
+        <ul>
+          <li style="font-size: 16px;"><b>Name:</b> ${name}</li>
+          <li style="font-size: 16px;"><b>Phone:</b> ${phone}</li>
+          <li style="font-size: 16px;"><b>Job Position:</b> ${jobPosition}</li>
+          <li style="font-size: 16px;"><b>Email:</b> ${email}</li>
+          <li style="font-size: 16px;"><b>Resume:</b> <a href="${resumeUrl}">${name}'s resume</a></li>
+        </ul>
+        <p style="font-size: 16px;">Please wait for us as we will contact you shortly.</p>
+      </div>
+    `
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      res.status(500).send("Error sending email");
+    } else {
+      console.log("Email sent: " + info.response);
+      res.send("Email sent successfully");
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
