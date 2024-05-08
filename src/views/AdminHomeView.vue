@@ -1,28 +1,37 @@
 <script setup>
 import AdminNavbar from "../components/navbar-admin.vue";
 import { ref, onMounted } from "vue";
-import { getUserSession } from "@/supabase/supabase";
+import { getUserSession, getQuotations } from "@/supabase/supabase";
+import Loader from "@/Loader/Loader.vue";
 
 const activeTab = ref("jobApplications");
 
 const userAccount = ref();
+const quotations = ref();
+const isLoading = ref(false)
 
 const getUserAccount = async () => {
   userAccount.value = await getUserSession();
+  console.log(userAccount.value)
 };
 
-onMounted(async () => {
-  await getUserAccount();
+const handleGetQuotations = async () => {
+  quotations.value = await getQuotations();
+};
+
+onMounted(() => {
+  getUserAccount();
+  handleGetQuotations();
 });
 </script>
 
-<template>
+<template>  
   <div class="adminhome-container">
     <div class="adminhome-background-div">
       <div id="home" class="opening-text">
         <h1>
           Welcome,
-          <b>{{ userAccount?.session.user.user_metadata.firstName }}</b>
+          <b>{{ userAccount?.session?.user?.user_metadata?.firstName }}</b>
         </h1>
         <div class="content">
           <p>
@@ -44,19 +53,13 @@ onMounted(async () => {
       </div>
       <!-- Tab Navigation -->
       <div class="jaq-tab-navigation">
-        <button
-          :class="{
-            'jaq-tab-btn': true,
-            active: activeTab === 'jobApplications',
-          }"
-          @click="activeTab = 'jobApplications'"
-        >
+        <button :class="{
+          'jaq-tab-btn': true,
+          active: activeTab === 'jobApplications',
+        }" @click="activeTab = 'jobApplications'">
           Job Applications
         </button>
-        <button
-          :class="{ 'jaq-tab-btn': true, active: activeTab === 'quotations' }"
-          @click="activeTab = 'quotations'"
-        >
+        <button :class="{ 'jaq-tab-btn': true, active: activeTab === 'quotations' }" @click="activeTab = 'quotations'">
           Quotations
         </button>
       </div>
@@ -69,7 +72,7 @@ onMounted(async () => {
               <th>Email</th>
               <th>Phone</th>
               <th>Job Position</th>
-              <th>Resume</th>  
+              <th>Resume</th>
             </tr>
           </thead>
           <tbody>
@@ -79,7 +82,7 @@ onMounted(async () => {
               <td>cdcutie@gmail.com</td>
               <td>143-143-143</td>
               <td>Installer</td>
-              <td><a href="path_to_resume">Download Resume</a></td>           
+              <td><a href="path_to_resume">Download Resume</a></td>
             </tr>
           </tbody>
         </table>
@@ -91,20 +94,17 @@ onMounted(async () => {
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
-              <th>Message</th>      
+              <th>Message</th>
             </tr>
           </thead>
           <tbody>
             <!-- Quotations-->
-            <tr>
-              <td>Cardo Dalisay</td>
-              <td>cdcutie@gmail.com</td>
-              <td>143-143-143</td>
+            <tr v-for="quotation in quotations">
+              <td>{{ quotation.name }}</td>
+              <td>{{ quotation.email }}</td>
+              <td>{{ quotation.phone }}</td>
               <td>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
+                {{ quotation.message }}
               </td>
             </tr>
           </tbody>
@@ -116,7 +116,8 @@ onMounted(async () => {
 
 <style scoped>
 .adminhome-container {
-  margin: 0; /* Adjust margin */
+  margin: 0;
+  /* Adjust margin */
 }
 
 .adminhome-background-div {
@@ -125,7 +126,8 @@ onMounted(async () => {
   background-position: center;
   background-repeat: no-repeat;
   height: 500px;
-  max-width: 100%; /* Set maximum width */
+  max-width: 100%;
+  /* Set maximum width */
 }
 
 @keyframes fadeInUp {
@@ -133,6 +135,7 @@ onMounted(async () => {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -181,7 +184,10 @@ onMounted(async () => {
   padding: 20px;
 }
 
-.ah-container h2 /* table title */ {
+.ah-container h2
+
+/* table title */
+  {
   font-size: 16px;
   letter-spacing: 1.5px;
   font-weight: normal;
