@@ -1,4 +1,52 @@
+<script setup>
+import { ref } from "vue";
+import Swal from "sweetalert2";
+import { addQuotation } from "@/supabase/supabase";
+
+const props = defineProps({
+  toggleLoadingState: {
+    type: Function,
+    required: true
+  }
+})
+const formData = ref({
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+  subject: `New Quotation receieved.`
+});
+
+const handleButtonClick = async () => {
+  if(!formData.name || !formData.email || !formData.phone || !formData.message){
+    alert("All fields are required.");
+    return
+  }
+  props.toggleLoadingState();
+  const response = await addQuotation(formData.value);
+
+  if (response.status === 0) {
+    Swal.fire({
+      icon: "error",
+      title: "Unable to submit quotation",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    return
+  }
+
+  Swal.fire({
+    icon: "success",
+    title: "Inquiry received! Check your email for the confirmation.",
+    showConfirmButton: false,
+    timer: 1500,
+  });
+  props.toggleLoadingState();
+};
+</script>
+
 <template>
+
   <div class="quote-form-container">
     <div class="quote-form">
       <div class="quote-form-3">
@@ -24,9 +72,7 @@
                 <i class="fas fa-map-marker-alt"></i>
                 <div class="contact-text">
                   <h2 class="contact-heading">Address</h2>
-                  <span
-                    >Greenlane Subdivision, Pamplona Tres, Las Pinas City</span
-                  >
+                  <span>Greenlane Subdivision, Pamplona Tres, Las Pinas City</span>
                 </div>
               </div>
             </div>
@@ -38,25 +84,20 @@
                 <h1>GET A QUOTATION!</h1>
                 <div class="form-group">
                   <label for="name">Name:</label>
-                  <input type="text" id="name" name="name" required />
+                  <input type="text" id="name" name="name" v-model="formData.name" required />
                 </div>
                 <form>
                   <div class="form-group form-group-inline">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required />
+                    <input type="email" id="email" name="email" v-model="formData.email" required />
                   </div>
                   <div class="form-group form-group-inline">
                     <label class="p-label" for="phone">Phone:</label>
-                    <input type="tel" id="phone" name="phone" required />
+                    <input type="tel" id="phone" name="phone" v-model="formData.phone" required />
                   </div>
                   <div class="form-group">
                     <label for="message">Message:</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows="4"
-                      required
-                    ></textarea>
+                    <textarea id="message" name="message" rows="4" v-model="formData.message" required></textarea>
                   </div>
                 </form>
                 <button type="submit" @click="handleButtonClick">Submit</button>
@@ -68,29 +109,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref } from "vue";
-import Swal from "sweetalert2";
-
-const formData = ref({
-  name: "",
-  email: "",
-  phone: "",
-  message: "",
-});
-
-const handleButtonClick = () => {
-  // Handle form submission logic here
-
-  Swal.fire({
-    icon: "success",
-    title: "Inquiry received!",
-    showConfirmButton: false,
-    timer: 1500,
-  });
-};
-</script>
 
 <style scoped>
 /* quote form section */
@@ -278,7 +296,8 @@ button[type="submit"]:hover {
 .form-group-inline input[type="email"] {
   width: 105%;
 }
+
 .p-label {
-    margin-left: 25px;
-  }
+  margin-left: 25px;
+}
 </style>

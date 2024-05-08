@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { v4 as uuidv4 } from "uuid";
 import router from "@/router";
+import axios from "axios";
 
 // Create a single supabase client for interacting with your database
 const supabase = createClient(
@@ -13,7 +14,7 @@ const logOutUser = async () => {
 
   if (error) {
     alert(error);
-    return
+    return;
   }
   router.push("/");
 };
@@ -125,6 +126,38 @@ const addProject = async (newProject) => {
   return result;
 };
 
+const addQuotation = async (newQuotation) => {
+  let result = {};
+
+  const { data, error } = await supabase.from("quotations").insert({
+    name: newQuotation.name,
+    email: newQuotation.email,
+    message: newQuotation.message,
+    phone: newQuotation.phone,
+  });
+
+  if (!error) {
+    axios
+      .post("http://localhost:3000/send-email", newQuotation, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((response) => {
+        console.log("Email sent successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
+      });
+  }
+
+  error
+    ? (result = { status: 0, errorMessage: error.message })
+    : (result = { status: 1, data });
+
+  return result;
+};
+
 const getProducts = async () => {
   const { data } = await supabase.from("products").select();
 
@@ -138,10 +171,10 @@ const getProjects = async () => {
 };
 
 const getQuotations = async () => {
-  const {data} = await supabase.from("quotations").select();
+  const { data } = await supabase.from("quotations").select();
 
   return data;
-}
+};
 
 const deleteProduct = async (product) => {
   const imageStorageDeletion = await deleteImage(product.imagePath);
@@ -247,9 +280,6 @@ const updateProject = async (updatedProject) => {
       };
 };
 
-
-
-
 export {
   createUserAccount,
   loginUser,
@@ -263,5 +293,6 @@ export {
   updateProject,
   getUserSession,
   logOutUser,
-  getQuotations
+  getQuotations,
+  addQuotation,
 };

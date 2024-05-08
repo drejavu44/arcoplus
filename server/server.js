@@ -21,13 +21,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/send-email", (req, res) => {
-  const { to, subject, text, name, phone, message } = req.body;
+  const { email, subject, name, phone, message } = req.body;
 
   const mailOptions = {
     from: "arcoplusph@gmail.com",
-    to,
+    to : email,
     subject,
-    text,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px;">
         <p style="font-size: 16px;"><b>Hello ${name},</b></p>
@@ -36,7 +35,7 @@ app.post("/send-email", (req, res) => {
           <li style="font-size: 16px;"><b>Name:</b> ${name}</li>
           <li style="font-size: 16px;"><b>Phone:</b> ${phone}</li>
           <li style="font-size: 16px;"><b>Message:</b> ${message}</li>
-          <li style="font-size: 16px;"><b>Email:</b> ${to}</li>
+          <li style="font-size: 16px;"><b>Email:</b> ${email}</li>
         </ul>
         <p style="font-size: 16px;">Please wait for us as we will contact you shortly.</p>
       </div>

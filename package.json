@@ -16,6 +16,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/vue-fontawesome": "^3.0.6",
     "@supabase/supabase-js": "^2.42.0",
+    "axios": "^1.6.8",
     "sweetalert2": "^11.10.7",
     "uuid": "^9.0.1",
     "vue": "^3.4.21",

@@ -1,63 +1,65 @@
 <template>
-  <div class="container">
-    <div class="home-container">
-      <div class="home-background-div">
-        <Navbar />
-        <div id="home" class="opening-text">
-          <h1>GOT A PROJECT FOR US? WE'VE GOT YOU COVERED</h1>
-          <div class="content">
-            <button @click="scrollToSection('quote')">GET A FREE QUOTATION NOW!</button>
-          </div>
-        </div>
-      </div>
-      <!--Why Choose Us-->
-      <div class="about-us-wcu">
-        <div class="wcu">
-          <div class="wcu-2">
-            <div class="wcu-column">
-              <div class="wcu-3">
-                <p class="wcu-icons">
-                  <i class="fa-solid fa-screwdriver-wrench"></i>
-                </p>
-                <div class="wcu-4">Expertise in Diverse Projects</div>
-                <div class="wcu-5">
-                  From residential to commercial and industrial ventures, our
-                  construction company specializes in a wide array of projects,
-                  ensuring tailored solutions to meet every client's needs.
-                </div>
-              </div>
-            </div>
-            <div class="wcu-column-2">
-              <div class="wcu-6">
-                <p class="wcu-icons"><i class="fa-solid fa-check-to-slot"></i></p>
-                <div class="wcu-7">Sustainable Solutions</div>
-                <div class="wcu-8">
-                  Committed to environmental responsibility, we integrate
-                  sustainable practices into our projects, minimizing our
-                  ecological footprint with eco-friendly materials and
-                  energy-efficient designs.
-                </div>
-              </div>
-            </div>
-            <div class="wcu-column-3">
-              <div class="wcu-9">
-                <p class="wcu-icons"><i class="fa-solid fa-people-group"></i></p>
-                <div class="wcu-10">Experienced Team</div>
-                <div class="wcu-11">
-                  Our team comprises skilled architects, engineers, project
-                  managers, and laborers, bringing years of collective experience
-                  to every project.
-                </div>
-                
-              </div>
-              
+  <Loader v-if="isLoading"/>
+  <div v-else>
+    <div class="container">
+      <div class="home-container">
+        <div class="home-background-div">
+          <Navbar />
+          <div id="home" class="opening-text">
+            <h1>GOT A PROJECT FOR US? WE'VE GOT YOU COVERED</h1>
+            <div class="content">
+              <button @click="scrollToSection('quote')">GET A FREE QUOTATION NOW!</button>
             </div>
           </div>
         </div>
+        <!--Why Choose Us-->
+        <div class="about-us-wcu">
+          <div class="wcu">
+            <div class="wcu-2">
+              <div class="wcu-column">
+                <div class="wcu-3">
+                  <p class="wcu-icons">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                  </p>
+                  <div class="wcu-4">Expertise in Diverse Projects</div>
+                  <div class="wcu-5">
+                    From residential to commercial and industrial ventures, our
+                    construction company specializes in a wide array of projects,
+                    ensuring tailored solutions to meet every client's needs.
+                  </div>
+                </div>
+              </div>
+              <div class="wcu-column-2">
+                <div class="wcu-6">
+                  <p class="wcu-icons"><i class="fa-solid fa-check-to-slot"></i></p>
+                  <div class="wcu-7">Sustainable Solutions</div>
+                  <div class="wcu-8">
+                    Committed to environmental responsibility, we integrate
+                    sustainable practices into our projects, minimizing our
+                    ecological footprint with eco-friendly materials and
+                    energy-efficient designs.
+                  </div>
+                </div>
+              </div>
+              <div class="wcu-column-3">
+                <div class="wcu-9">
+                  <p class="wcu-icons"><i class="fa-solid fa-people-group"></i></p>
+                  <div class="wcu-10">Experienced Team</div>
+                  <div class="wcu-11">
+                    Our team comprises skilled architects, engineers, project
+                    managers, and laborers, bringing years of collective experience
+                    to every project.
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-        <!-- About Us -->
-        <div id="about">
+      <!-- About Us -->
+      <div id="about">
         <div class="about-us-2">
           <div class="about-us-column">
             <img src="../assets/ap-about-us.jpg" class="about-us-image" />
@@ -85,26 +87,27 @@
                 <div @click="scrollToSection('projects')">
                   See some of our recent projects
                 </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!--Project-->
-<div id="projects">
-    <Project />
+    <!--Project-->
+    <div id="projects">
+      <Project />
+    </div>
+    <!--Product-->
+    <div id="products">
+      <Product />
+    </div>
+    <!--Quote Form-->
+    <div id="quote">
+      <QuoteForm :toggleLoadingState="toggleLoadingState" />
+    </div>
+    <Footer />
   </div>
-  <!--Product-->
-  <div id="products">
-    <Product />
-  </div>
-  <!--Quote Form-->
-  <div id="quote">
-    <QuoteForm />
-  </div>
-  <Footer />
 </template>
 
 <script setup>
@@ -113,7 +116,15 @@ import Footer from "../components/footer.vue";
 import Product from "../components/product.vue";
 import Project from "../components/project.vue";
 import QuoteForm from "../components/quoteform.vue";
+import Loader from "@/Loader/Loader.vue";
 import { RouterLink } from "vue-router";
+import { ref } from "vue";
+
+const isLoading = ref(false)
+
+const toggleLoadingState = () => {
+  isLoading.value = !isLoading.value
+}
 
 const scrollToSection = (sectionId) => {
   const section = document.getElementById(sectionId);
@@ -158,6 +169,7 @@ const scrollToSection = (sectionId) => {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -386,6 +398,7 @@ const scrollToSection = (sectionId) => {
 }
 
 @media only screen and (max-width: 768px) {
+
   .wcu-5,
   .wcu-8,
   .wcu-11 {
@@ -393,4 +406,3 @@ const scrollToSection = (sectionId) => {
   }
 }
 </style>
-
