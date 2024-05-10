@@ -88,7 +88,7 @@ onMounted(() => {
               <td>{{ application.email }}</td>
               <td>{{ application.phone }}</td>
               <td>{{ application.jobPosition }}</td>
-              <td><a :href="application.resumeUrl">Download Resume</a></td>
+              <td><a :href="application.resumeUrl">View Resume</a></td>
             </tr>
           </tbody>
         </table>

@@ -1,5 +1,5 @@
 <template>
-  <Loader v-if="isLoading"/>
+  <Loader v-if="isLoading" />
   <div v-else>
     <div class="container">
       <div class="home-container">
@@ -8,7 +8,9 @@
           <div id="home" class="opening-text">
             <h1>GOT A PROJECT FOR US? WE'VE GOT YOU COVERED</h1>
             <div class="content">
-              <button @click="scrollToSection('quote')">GET A FREE QUOTATION NOW!</button>
+              <button @click="scrollToSection('quote')">
+                GET A FREE QUOTATION NOW!
+              </button>
             </div>
           </div>
         </div>
@@ -24,14 +26,17 @@
                   <div class="wcu-4">Expertise in Diverse Projects</div>
                   <div class="wcu-5">
                     From residential to commercial and industrial ventures, our
-                    construction company specializes in a wide array of projects,
-                    ensuring tailored solutions to meet every client's needs.
+                    construction company specializes in a wide array of
+                    projects, ensuring tailored solutions to meet every client's
+                    needs.
                   </div>
                 </div>
               </div>
               <div class="wcu-column-2">
                 <div class="wcu-6">
-                  <p class="wcu-icons"><i class="fa-solid fa-check-to-slot"></i></p>
+                  <p class="wcu-icons">
+                    <i class="fa-solid fa-check-to-slot"></i>
+                  </p>
                   <div class="wcu-7">Sustainable Solutions</div>
                   <div class="wcu-8">
                     Committed to environmental responsibility, we integrate
@@ -43,16 +48,16 @@
               </div>
               <div class="wcu-column-3">
                 <div class="wcu-9">
-                  <p class="wcu-icons"><i class="fa-solid fa-people-group"></i></p>
+                  <p class="wcu-icons">
+                    <i class="fa-solid fa-people-group"></i>
+                  </p>
                   <div class="wcu-10">Experienced Team</div>
                   <div class="wcu-11">
                     Our team comprises skilled architects, engineers, project
-                    managers, and laborers, bringing years of collective experience
-                    to every project.
+                    managers, and laborers, bringing years of collective
+                    experience to every project.
                   </div>
-
                 </div>
-
               </div>
             </div>
           </div>
@@ -69,19 +74,24 @@
               <div class="about-us-4">About</div>
               <div class="about-us-5">TRANSFORMING IDEAS INTO STRUCTURES</div>
               <div class="about-us-6">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
+                At ArcoPlus Constructions, we pride ourselves on delivering
+                excellence in every project we undertake. With years of
+                experience in the construction industry, our team is dedicated
+                to providing top-notch services to our clients. From residential
+                buildings to commercial complexes, we specialize in a wide range
+                of construction projects, always ensuring the highest standards
+                of quality and craftsmanship.
+
                 <br /><br />
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. Lorem
-                Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
+                Our commitment to innovation sets us apart. At ArcoPlus
+                Constructions, we embrace cutting-edge technologies and
+                sustainable practices to create spaces that are not only
+                aesthetically pleasing but also environmentally friendly. We
+                believe in the power of collaboration and work closely with our
+                clients to understand their vision, turning their dreams into
+                reality. With a focus on integrity, reliability, and customer
+                satisfaction, ArcoPlus Constructions is your trusted partner for
+                all your construction needs.
               </div>
               <div class="about-us-7">
                 <div @click="scrollToSection('projects')">
@@ -120,11 +130,11 @@ import Loader from "@/Loader/Loader.vue";
 import { RouterLink } from "vue-router";
 import { ref } from "vue";
 
-const isLoading = ref(false)
+const isLoading = ref(false);
 
 const toggleLoadingState = () => {
-  isLoading.value = !isLoading.value
-}
+  isLoading.value = !isLoading.value;
+};
 
 const scrollToSection = (sectionId) => {
   const section = document.getElementById(sectionId);
@@ -318,7 +328,6 @@ const scrollToSection = (sectionId) => {
   color: rgb(153, 128, 73);
 }
 
-
 /* wcu section */
 
 .wcu {
@@ -398,7 +407,6 @@ const scrollToSection = (sectionId) => {
 }
 
 @media only screen and (max-width: 768px) {
-
   .wcu-5,
   .wcu-8,
   .wcu-11 {
